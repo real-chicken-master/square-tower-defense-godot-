@@ -1,0 +1,29 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="gdd 112 square tower defense"
+run/main_scene="res://maps/grassMap.tscn"
+config/features=PackedStringArray("4.2", "Forward Plus")
+
+[display]
+
+window/size/viewport_width=1728
+window/size/viewport_height=972
+window/stretch/mode="canvas_items"
+
+[layer_names]
+
+2d_physics/layer_1="Squares"
+2d_physics/layer_2="towers"
+2d_physics/layer_3="projectiles"
+2d_physics/size/viewport_height=648
+2d_physics/size/viewport_width=1152

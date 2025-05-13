@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://uqmsffodfali"]
+
+[node name="mapBase" type="Node2D"]
+
+[node name="UI" type="Node" parent="."]
+
+[node name="mapImage" type="Node2D" parent="."]
+
+[node name="towers" type="Node2D" parent="."]
+
+[node name="SquarePath" type="Node2D" parent="."]

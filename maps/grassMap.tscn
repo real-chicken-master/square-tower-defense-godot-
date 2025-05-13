@@ -1,0 +1,67 @@
+[gd_scene load_steps=12 format=3 uid="uid://cemlr2vbce2kw"]
+
+[ext_resource type="PackedScene" uid="uid://uqmsffodfali" path="res://maps/mapBase.tscn" id="1_dgd4r"]
+[ext_resource type="Script" path="res://maps/grassMap.gd" id="2_qnl7v"]
+[ext_resource type="PackedScene" uid="uid://bnwvefyvc5koy" path="res://UI/ui.tscn" id="3_7oe5r"]
+[ext_resource type="PackedScene" uid="uid://gcjunndw6jc7" path="res://towers/discShooter.tscn" id="5_gtsep"]
+[ext_resource type="Texture2D" uid="uid://e1c7q5w4qyjt" path="res://images/brick.png" id="5_h0wfq"]
+[ext_resource type="PackedScene" uid="uid://deyjucdki6ap2" path="res://squares (enemies)/squareBase.tscn" id="5_ouwuk"]
+[ext_resource type="Texture2D" uid="uid://qnvj5rjakmih" path="res://images/grass.png" id="6_tm8fv"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v162i"]
+texture = ExtResource("5_h0wfq")
+texture_region_size = Vector2i(225, 225)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pqpgf"]
+texture = ExtResource("6_tm8fv")
+texture_region_size = Vector2i(225, 225)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_n56xr"]
+tile_size = Vector2i(225, 225)
+sources/0 = SubResource("TileSetAtlasSource_v162i")
+sources/1 = SubResource("TileSetAtlasSource_pqpgf")
+
+[sub_resource type="Curve2D" id="Curve2D_0f2c1"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -45.1743, 159.683, 0, 0, 0, 0, 297.983, 161.169, 0, 0, 0, 0, 299.318, 358.28, 0, 0, 0, 0, 164.944, 358.28, 0, 0, 0, 0, 164.054, 292.428, 0, 0, 0, 0, 25.231, 290.203, 0, 0, 0, 0, 24.786, 484.2, 0, 0, 0, 0, 435.917, 486.87, 0, 0, 0, 0, 434.22, 95.046, 0, 0, 0, 0, 840.663, 96.6517, 0, 0, 0, 0, 843.266, 294.322, 0, 0, 0, 0, 703.259, 293.379, 0, 0, 0, 0, 703.731, 227.382, 0, 0, 0, 0, 566.133, 226.684, 0, 0, 0, 0, 565.105, 423.238, 0, 0, 0, 0, 839.403, 424.651, 0, 0, 0, 0, 841.083, 615.739)
+}
+point_count = 17
+
+[node name="grassMap" instance=ExtResource("1_dgd4r")]
+script = ExtResource("2_qnl7v")
+
+[node name="UI" parent="UI" index="0" instance=ExtResource("3_7oe5r")]
+metadata/_edit_lock_ = true
+
+[node name="TileMap" type="TileMap" parent="mapImage" index="0"]
+position = Vector2(310, 97)
+scale = Vector2(0.45, 0.432)
+tile_set = SubResource("TileSet_n56xr")
+format = 2
+layer_0/name = "grass"
+layer_0/tile_data = PackedInt32Array(0, 1, 0, 65536, 1, 0, 131072, 1, 0, 196608, 1, 0, 262144, 1, 0, 327680, 1, 0, 393216, 1, 0, 458752, 1, 0, 524288, 1, 0, 1, 1, 0, 65537, 1, 0, 131073, 1, 0, 196609, 1, 0, 262145, 1, 0, 327681, 1, 0, 393217, 1, 0, 458753, 1, 0, 524289, 1, 0, 2, 1, 0, 65538, 1, 0, 131074, 1, 0, 196610, 1, 0, 262146, 1, 0, 327682, 1, 0, 393218, 1, 0, 458754, 1, 0, 524290, 1, 0, 3, 1, 0, 65539, 1, 0, 131075, 1, 0, 196611, 1, 0, 262147, 1, 0, 327683, 1, 0, 393219, 1, 0, 458755, 1, 0, 524291, 1, 0, 4, 1, 0, 65540, 1, 0, 131076, 1, 0, 196612, 1, 0, 262148, 1, 0, 327684, 1, 0, 393220, 1, 0, 458756, 1, 0, 524292, 1, 0, 5, 1, 0, 65541, 1, 0, 131077, 1, 0, 196613, 1, 0, 262149, 1, 0, 327685, 1, 0, 393221, 1, 0, 458757, 1, 0, 524293, 1, 0, 6, 1, 0, 65542, 1, 0, 131078, 1, 0, 196614, 1, 0, 262150, 1, 0, 327686, 1, 0, 393222, 1, 0, 458758, 1, 0, 524294, 1, 0, 7, 1, 0, 65543, 1, 0, 131079, 1, 0, 196615, 1, 0, 262151, 1, 0, 327687, 1, 0, 393223, 1, 0, 458759, 1, 0, 524295, 1, 0, 8, 1, 0, 65544, 1, 0, 131080, 1, 0, 196616, 1, 0, 262152, 1, 0, 327688, 1, 0, 393224, 1, 0, 458760, 1, 0, 524296, 1, 0, 9, 1, 0, 65545, 1, 0, 131081, 1, 0, 196617, 1, 0, 262153, 1, 0, 327689, 1, 0, 393225, 1, 0, 458761, 1, 0, 524297, 1, 0, 10, 1, 0, 65546, 1, 0, 131082, 1, 0, 196618, 1, 0, 262154, 1, 0, 327690, 1, 0, 393226, 1, 0, 458762, 1, 0, 524298, 1, 0, 11, 1, 0, 65547, 1, 0, 131083, 1, 0, 196619, 1, 0, 262155, 1, 0, 327691, 1, 0, 393227, 1, 0, 458763, 1, 0, 524299, 1, 0, 12, 1, 0, 65548, 1, 0, 131084, 1, 0, 196620, 1, 0, 262156, 1, 0, 327692, 1, 0, 393228, 1, 0, 458764, 1, 0, 524300, 1, 0, 13, 1, 0, 65549, 1, 0, 131085, 1, 0, 196621, 1, 0, 262157, 1, 0, 327693, 1, 0, 393229, 1, 0, 458765, 1, 0, 524301, 1, 0)
+layer_1/name = "road"
+layer_1/tile_data = PackedInt32Array(131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 131075, 0, 0, 131076, 0, 0, 196612, 0, 0, 262148, 0, 0, 327684, 0, 0, 327683, 0, 0, 327682, 0, 0, 262146, 0, 0, 262145, 0, 0, 262144, 0, 0, 327680, 0, 0, 393216, 0, 0, 458752, 0, 0, 458753, 0, 0, 458754, 0, 0, 458755, 0, 0, 458756, 0, 0, 458757, 0, 0, 458758, 0, 0, 393222, 0, 0, 327686, 0, 0, 262150, 0, 0, 196614, 0, 0, 131078, 0, 0, 65542, 0, 0, 65543, 0, 0, 65544, 0, 0, 65545, 0, 0, 65546, 0, 0, 65547, 0, 0, 65548, 0, 0, 131084, 0, 0, 196620, 0, 0, 262156, 0, 0, 262155, 0, 0, 262154, 0, 0, 196618, 0, 0, 196617, 0, 0, 196616, 0, 0, 262152, 0, 0, 327688, 0, 0, 393224, 0, 0, 393225, 0, 0, 393226, 0, 0, 393227, 0, 0, 393228, 0, 0, 458764, 0, 0, 524300, 0, 0)
+
+[node name="projectiles" type="Node2D" parent="towers" index="0"]
+
+[node name="discShooter" parent="towers" index="1" instance=ExtResource("5_gtsep")]
+position = Vector2(665.515, 459.986)
+scale = Vector2(0.8, 0.8)
+
+[node name="towerImage" type="Sprite2D" parent="towers" index="2"]
+position = Vector2(500, 200)
+
+[node name="SquarePath" parent="." index="3"]
+metadata/_edit_lock_ = true
+
+[node name="path2d" type="Path2D" parent="SquarePath" index="0"]
+position = Vector2(320, 97)
+scale = Vector2(1.50197, 1.49406)
+curve = SubResource("Curve2D_0f2c1")
+metadata/_edit_lock_ = true
+
+[node name="PathFollow2D" parent="SquarePath/path2d" index="0" instance=ExtResource("5_ouwuk")]
+position = Vector2(-45.1743, 159.683)

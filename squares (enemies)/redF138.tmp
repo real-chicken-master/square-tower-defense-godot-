@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjcmjxpb1of3c"]
+
+[ext_resource type="Script" path="res://squares (enimes)/redSquare.gd" id="2_n5pt6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ugnh"]
+size = Vector2(50, 50)
+
+[node name="PathFollow2D" type="PathFollow2D"]
+script = ExtResource("2_n5pt6")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("RectangleShape2D_0ugnh")
+
+[node name="Polygon2D" type="Polygon2D" parent="CharacterBody2D"]
+polygon = PackedVector2Array(-25, -25, 25, -25, 25, 25, -25, 25)

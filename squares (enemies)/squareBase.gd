@@ -1,0 +1,29 @@
+extends PathFollow2D
+
+class_name Square
+
+var speed = 0
+
+@export var health = 2
+
+func _ready():
+	updateSquareColor()
+	progress = 0
+
+func _process(delta):
+	updateSquareColor()
+	progress += speed*delta
+
+func hit(damage):
+	health -= damage
+	updateSquareColor()
+
+func updateSquareColor():
+	if(health <= 0):
+		queue_free()
+	if(health == 1):
+		$CharacterBody2D.modulate = Color(255,0,0,255)
+		speed = 200
+	if(health == 2):
+		$CharacterBody2D.modulate = Color(0,0,255,255)
+		speed = 200
