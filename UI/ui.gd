@@ -12,11 +12,11 @@ var money
 
 var wave
 
-@onready var healthLabel = $"topbar (Stats)/HBoxContainer/health"
+@onready var healthLabel = $"topbar (Stats)/HBoxContainer/heartImage/health"
 
 @onready var waveLabel = $"topbar (Stats)/HBoxContainer/wave"
 
-@onready var moneyLabel = $"topbar (Stats)/HBoxContainer/money"
+@onready var moneyLabel = $"topbar (Stats)/HBoxContainer/$image/money"
 
 const discShooterPrice = 50
 
@@ -38,7 +38,8 @@ func _process(_delta):
 func updateStats():
 	healthLabel.text = str(health)
 	moneyLabel.text = str(money)
-	waveLabel.text = str(wave)
+	waveLabel.text = "wave
+		" + str(wave)
 
 func updateTowerButtons():
 	if(money >= discShooterPrice):
