@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal shootDisc(pos,direction,damage)
+
 var notice = false
 
 var target = null
@@ -8,18 +10,18 @@ var canShoot = true
 
 var targets = []
 
-var Damage = 3
+var Damage = 1
 
 func _process(_delta):
 	getTarget()
 	if(notice):
-		look_at(target.global_position)
-		rotation_degrees += 90
 		if(canShoot):
-			if target.has_method("hit"):
-				target.hit(Damage)
-			canShoot = false
-			$shootDelay.start()
+			for marker in $Sprayer.get_children():
+				var pos = marker.global_position
+				var Direction = (marker.global_position - global_position).normalized()
+				shootDisc.emit(pos, Direction,Damage)
+				canShoot = false
+				$shootDelay.start()
 
 
 func getTarget():
@@ -49,3 +51,4 @@ func _on_notice_area_body_exited(body):
 
 func _on_shoot_delay_timeout():
 	canShoot = true
+

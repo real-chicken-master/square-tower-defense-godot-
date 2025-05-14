@@ -58,7 +58,6 @@ func updateTowerButtons():
 
 func _on_start_wave_button_down():
 	if(!Globals.waveInProgress):
-		Globals.waveInProgress = true
 		Globals.wave += 1
 		wave = Globals.wave
 		startNextWave.emit(wave)

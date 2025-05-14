@@ -31,13 +31,12 @@ func towerPlace(towerType):
 func placeTower(towerType,pos):
 	if(towerType == "discShooter"):
 		var discShooter = discShooter_scene.instantiate() as CharacterBody2D
-		discShooter.connect("shootDisc",_on_disc_shooter_shoot_disc)
+		discShooter.connect("shootDisc",shoot_disc)
 		discShooter.global_position = pos
 		$towers.add_child(discShooter)
 		pass
 	if(towerType == "sniper"):
 		var sniper = sniper_scene.instantiate() as CharacterBody2D
-		sniper.connect("shootDisc",_on_disc_shooter_shoot_disc)
 		sniper.global_position = pos
 		$towers.add_child(sniper)
 		pass
@@ -60,7 +59,7 @@ func createSquare(type):
 		square.health = 6
 		$SquarePath/path2d.add_child(square)
 
-func _on_disc_shooter_shoot_disc(pos, direction,damage):
+func shoot_disc(pos, direction,damage):
 	var disc = disc_scene.instantiate() as Area2D
 	disc.global_position = pos
 	disc.direction = direction
@@ -107,10 +106,22 @@ func wave4():
 
 func _on_ui_start_next_wave(waveNumber):
 	if(waveNumber == 1):
+		Globals.waveInProgress = true
 		wave1()
 	if(waveNumber == 2):
+		Globals.waveInProgress = true
 		wave2()
 	if(waveNumber == 3):
+		Globals.waveInProgress = true
 		wave3()
 	if(waveNumber == 4):
+		Globals.waveInProgress = true
 		wave4()
+	if(!Globals.waveInProgress):
+		Globals.wave = 0
+
+
+
+
+func _on_character_body_2d_shoot_disc(pos, direction, damage):
+	shoot_disc(pos, direction, damage)

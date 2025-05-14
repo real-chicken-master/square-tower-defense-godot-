@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://cemlr2vbce2kw"]
+[gd_scene load_steps=11 format=3 uid="uid://cemlr2vbce2kw"]
 
 [ext_resource type="PackedScene" uid="uid://uqmsffodfali" path="res://maps/mapBase.tscn" id="1_dgd4r"]
 [ext_resource type="Script" path="res://maps/grassMap.gd" id="2_qnl7v"]
 [ext_resource type="PackedScene" uid="uid://bnwvefyvc5koy" path="res://UI/ui.tscn" id="3_7oe5r"]
 [ext_resource type="Texture2D" uid="uid://e1c7q5w4qyjt" path="res://images/brick.png" id="5_h0wfq"]
 [ext_resource type="Texture2D" uid="uid://qnvj5rjakmih" path="res://images/grass.png" id="6_tm8fv"]
+[ext_resource type="PackedScene" uid="uid://cbd3r4kd8smbh" path="res://towers/sprayer.tscn" id="6_tvquu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v162i"]
 texture = ExtResource("5_h0wfq")
@@ -44,6 +45,7 @@ layer_1/name = "road"
 layer_1/tile_data = PackedInt32Array(131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 131075, 0, 0, 131076, 0, 0, 196612, 0, 0, 262148, 0, 0, 327684, 0, 0, 327683, 0, 0, 327682, 0, 0, 262146, 0, 0, 262145, 0, 0, 262144, 0, 0, 327680, 0, 0, 393216, 0, 0, 458752, 0, 0, 458753, 0, 0, 458754, 0, 0, 458755, 0, 0, 458756, 0, 0, 458757, 0, 0, 458758, 0, 0, 393222, 0, 0, 327686, 0, 0, 262150, 0, 0, 196614, 0, 0, 131078, 0, 0, 65542, 0, 0, 65543, 0, 0, 65544, 0, 0, 65545, 0, 0, 65546, 0, 0, 65547, 0, 0, 65548, 0, 0, 131084, 0, 0, 196620, 0, 0, 262156, 0, 0, 262155, 0, 0, 262154, 0, 0, 196618, 0, 0, 196617, 0, 0, 196616, 0, 0, 262152, 0, 0, 327688, 0, 0, 393224, 0, 0, 393225, 0, 0, 393226, 0, 0, 393227, 0, 0, 393228, 0, 0, 458764, 0, 0, 524300, 0, 0)
 
 [node name="tower cant place area" type="Area2D" parent="mapImage" index="1"]
+visible = false
 collision_layer = 8
 collision_mask = 0
 
@@ -53,6 +55,9 @@ polygon = PackedVector2Array(-3200.4, -1617.22, 668.229, -1177.2, 311.016, 97.18
 [node name="projectiles" type="Node2D" parent="towers" index="0"]
 
 [node name="towerPlaceIcons" type="Node2D" parent="towers" index="1"]
+
+[node name="CharacterBody2D" parent="towers" index="2" instance=ExtResource("6_tvquu")]
+position = Vector2(660.6, 431.146)
 
 [node name="SquarePath" parent="." index="3"]
 metadata/_edit_lock_ = true
@@ -64,4 +69,5 @@ curve = SubResource("Curve2D_0f2c1")
 metadata/_edit_lock_ = true
 
 [connection signal="startNextWave" from="UI/UI" to="." method="_on_ui_start_next_wave"]
+[connection signal="shootDisc" from="towers/CharacterBody2D" to="." method="_on_character_body_2d_shoot_disc"]
 [connection signal="child_exiting_tree" from="SquarePath/path2d" to="." method="_on_path_2d_child_exiting_tree"]
