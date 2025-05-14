@@ -55,6 +55,10 @@ func createSquare(type):
 		var square = Square_scene.instantiate() as PathFollow2D
 		square.health = 3
 		$SquarePath/path2d.add_child(square)
+	if(type == "green"):
+		var square = Square_scene.instantiate() as PathFollow2D
+		square.health = 6
+		$SquarePath/path2d.add_child(square)
 
 func _on_disc_shooter_shoot_disc(pos, direction,damage):
 	var disc = disc_scene.instantiate() as Area2D
@@ -68,6 +72,8 @@ func wave1():
 	for num in 50:
 		createSquare("red")
 		await get_tree().create_timer(0.2).timeout
+	await $SquarePath/path2d.get_child_count()==1
+	Globals.waveInProgress = false
 
 func wave2():
 	for num in 20:
@@ -76,6 +82,8 @@ func wave2():
 	for num in 20:
 		createSquare("blue")
 		await get_tree().create_timer(0.2).timeout
+	await $SquarePath/path2d.get_child_count()==1
+	Globals.waveInProgress = false
 
 func wave3():
 	for num in 10:
@@ -87,6 +95,15 @@ func wave3():
 	for num in 20:
 		createSquare("yellow")
 		await get_tree().create_timer(0.2).timeout
+	await $SquarePath/path2d.get_child_count()==1
+	Globals.waveInProgress = false
+
+func wave4():
+	for num in 10:
+		createSquare("green")
+		await get_tree().create_timer(0.3).timeout
+	await $SquarePath/path2d.get_child_count()==1
+	Globals.waveInProgress = false
 
 func _on_ui_start_next_wave(waveNumber):
 	if(waveNumber == 1):
@@ -95,8 +112,5 @@ func _on_ui_start_next_wave(waveNumber):
 		wave2()
 	if(waveNumber == 3):
 		wave3()
-
-
-func _on_path_2d_child_exiting_tree(_node):
-	if ($SquarePath/path2d.get_child_count()==1):
-		Globals.waveInProgress = false
+	if(waveNumber == 4):
+		wave4()

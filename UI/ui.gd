@@ -20,7 +20,11 @@ var wave
 
 const discShooterPrice = 50
 
-const sniperPrice = 100
+const sniperPrice = 75
+
+func _ready():
+	$"sidebar (towers)/VBoxContainer/discShooter".text = "$"+str(discShooterPrice)
+	$"sidebar (towers)/VBoxContainer/sniper".text = "$"+str(sniperPrice)
 
 func _on_disc_shooter_button_down():
 	if(money >= discShooterPrice):

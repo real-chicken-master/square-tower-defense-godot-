@@ -7,6 +7,7 @@
 radius = 56.264
 
 [node name="Sniper" type="Sprite2D"]
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("1_b73cq")
 script = ExtResource("2_bixsi")
 

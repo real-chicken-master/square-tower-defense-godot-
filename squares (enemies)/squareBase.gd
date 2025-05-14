@@ -34,3 +34,6 @@ func updateSquareColor():
 	if(health == 3):
 		$CharacterBody2D.modulate = Color(255,255,0,255)
 		speed = 500
+	if(health >= 4 && health <= 6):
+		$CharacterBody2D.modulate = Color(0,255,0,255)
+		speed = 500
