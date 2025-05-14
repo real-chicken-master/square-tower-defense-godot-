@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqjntmdj7yeqf"]
+
+[ext_resource type="Texture2D" uid="uid://b4xe5wgfo2q5" path="res://images/disc.png" id="1_wrx0h"]
+[ext_resource type="Script" path="res://towers/tower place/DiscShooterPlace.gd" id="2_xpbnm"]
+
+[node name="Sprite2D" type="Sprite2D"]
+z_index = 4
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_wrx0h")
+script = ExtResource("2_xpbnm")
