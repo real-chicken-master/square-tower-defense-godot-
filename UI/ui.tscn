@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bnwvefyvc5koy"]
 
 [ext_resource type="Script" path="res://UI/ui.gd" id="1_palqw"]
-[ext_resource type="Texture2D" uid="uid://b4xe5wgfo2q5" path="res://images/disc.png" id="1_pxcmq"]
+[ext_resource type="Texture2D" uid="uid://dvxdyo2rrwf4m" path="res://images/DiscShooter.png" id="2_hmbaw"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -38,7 +38,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 text = "$50"
-icon = ExtResource("1_pxcmq")
+icon = ExtResource("2_hmbaw")
 icon_alignment = 1
 vertical_icon_alignment = 0
 

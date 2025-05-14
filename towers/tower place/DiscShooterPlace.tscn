@@ -1,15 +1,15 @@
 [gd_scene load_steps=4 format=3 uid="uid://bqjntmdj7yeqf"]
 
-[ext_resource type="Texture2D" uid="uid://b4xe5wgfo2q5" path="res://images/disc.png" id="1_wrx0h"]
+[ext_resource type="Texture2D" uid="uid://dvxdyo2rrwf4m" path="res://images/DiscShooter.png" id="1_om7tc"]
 [ext_resource type="Script" path="res://towers/tower place/DiscShooterPlace.gd" id="2_xpbnm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lvjdx"]
-radius = 112.528
+radius = 60.0
 
 [node name="Sprite2D" type="Sprite2D"]
 z_index = 4
-scale = Vector2(0.35, 0.35)
-texture = ExtResource("1_wrx0h")
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("1_om7tc")
 script = ExtResource("2_xpbnm")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -17,6 +17,7 @@ collision_layer = 0
 collision_mask = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 8.57143)
 shape = SubResource("CircleShape2D_lvjdx")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

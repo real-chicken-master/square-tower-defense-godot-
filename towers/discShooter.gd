@@ -18,7 +18,7 @@ func _process(_delta):
 		look_at(target.global_position)
 		rotation_degrees += 90
 		if(canShoot):
-			var pos = $Polygon2D/Marker2D.global_position
+			var pos = $DiscShooter/Marker2D.global_position
 			var Direction = (target.global_position - global_position).normalized()
 			shootDisc.emit(pos, Direction,Damage)
 			canShoot = false

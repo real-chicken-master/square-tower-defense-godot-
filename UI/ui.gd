@@ -32,7 +32,6 @@ func _process(_delta):
 	wave = Globals.wave
 	updateStats()
 	updateTowerButtons()
-	
 
 func updateStats():
 	healthLabel.text = str(health)
