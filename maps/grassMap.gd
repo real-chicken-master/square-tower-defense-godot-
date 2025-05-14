@@ -34,6 +34,14 @@ func createSquare(type):
 		var square = Square_scene.instantiate() as PathFollow2D
 		square.health = 1
 		$SquarePath/path2d.add_child(square)
+	if(type == "blue"):
+		var square = Square_scene.instantiate() as PathFollow2D
+		square.health = 2
+		$SquarePath/path2d.add_child(square)
+	if(type == "yellow"):
+		var square = Square_scene.instantiate() as PathFollow2D
+		square.health = 4
+		$SquarePath/path2d.add_child(square)
 
 func _on_disc_shooter_shoot_disc(pos, direction,damage):
 	var disc = disc_scene.instantiate() as Area2D
@@ -49,10 +57,21 @@ func wave1():
 		var spawnDelay := Timer.new() 
 		await get_tree().create_timer(0.2).timeout
 
+func wave2():
+	for num in 20:
+		createSquare("red")
+		var spawnDelay := Timer.new() 
+		await get_tree().create_timer(0.2).timeout
+	for num in 20:
+		createSquare("blue")
+		var spawnDelay := Timer.new() 
+		await get_tree().create_timer(0.2).timeout
 
 func _on_ui_start_next_wave(waveNumber):
 	if(waveNumber == 1):
 		wave1()
+	if(waveNumber == 2):
+		wave2()
 
 
 func _on_path_2d_child_exiting_tree(_node):
