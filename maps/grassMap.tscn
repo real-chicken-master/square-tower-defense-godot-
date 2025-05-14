@@ -79,3 +79,6 @@ health = 3
 [node name="PathFollow2D4" parent="SquarePath/path2d" index="3" instance=ExtResource("5_ouwuk")]
 position = Vector2(-45.1743, 159.683)
 health = 3
+
+[connection signal="startNextWave" from="UI/UI" to="." method="_on_ui_start_next_wave"]
+[connection signal="child_exiting_tree" from="SquarePath/path2d" to="." method="_on_path_2d_child_exiting_tree"]

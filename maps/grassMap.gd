@@ -33,7 +33,7 @@ func createSquare(type):
 	if(type == "red"):
 		var square = Square_scene.instantiate() as PathFollow2D
 		square.health = 1
-		$CanvasLayer/BoxContainer/SquarePath/path2d.add_child(square)
+		$SquarePath/path2d.add_child(square)
 
 func _on_disc_shooter_shoot_disc(pos, direction,damage):
 	var disc = disc_scene.instantiate() as Area2D
@@ -47,4 +47,11 @@ func wave1():
 	createSquare("red")
 
 
+func _on_ui_start_next_wave(waveNumber):
+	if(waveNumber == 1):
+		wave1()
 
+
+func _on_path_2d_child_exiting_tree(node):
+	if ($SquarePath/path2d.get_child_count()==1):
+		Globals.waveInProgress = false
