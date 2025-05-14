@@ -54,17 +54,14 @@ func _on_disc_shooter_shoot_disc(pos, direction,damage):
 func wave1():
 	for num in 50:
 		createSquare("red")
-		var spawnDelay := Timer.new() 
 		await get_tree().create_timer(0.2).timeout
 
 func wave2():
 	for num in 20:
 		createSquare("red")
-		var spawnDelay := Timer.new() 
 		await get_tree().create_timer(0.2).timeout
 	for num in 20:
 		createSquare("blue")
-		var spawnDelay := Timer.new() 
 		await get_tree().create_timer(0.2).timeout
 
 func _on_ui_start_next_wave(waveNumber):
