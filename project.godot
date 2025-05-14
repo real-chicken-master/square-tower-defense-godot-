@@ -33,5 +33,6 @@ window/stretch/mode="canvas_items"
 2d_physics/layer_1="Squares"
 2d_physics/layer_2="towers"
 2d_physics/layer_3="projectiles"
+2d_physics/layer_4="squarecantPlace"
 2d_physics/size/viewport_height=648
 2d_physics/size/viewport_width=1152

@@ -11,6 +11,8 @@ func _ready():
 	progress = 0
 
 func _process(delta):
+	if(progress_ratio == 1):
+		queue_free()
 	updateSquareColor()
 	progress += speed*delta
 
@@ -27,3 +29,6 @@ func updateSquareColor():
 	if(health == 2):
 		$CharacterBody2D.modulate = Color(0,0,255,255)
 		speed = 200
+	if(health == 3):
+		$CharacterBody2D.modulate = Color(255,255,0,255)
+		speed = 300

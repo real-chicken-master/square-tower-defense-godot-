@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://deyjucdki6ap2"]
 
 [ext_resource type="Script" path="res://squares (enemies)/squareBase.gd" id="1_0vmld"]
-[ext_resource type="Script" path="res://squares (enemies)/CharacterBody2D.gd" id="2_b4h5c"]
+[ext_resource type="Script" path="res://squares (enemies)/squareBody.gd" id="2_n532f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0ugnh"]
 size = Vector2(50, 50)
@@ -13,7 +13,7 @@ script = ExtResource("1_0vmld")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 collision_mask = 4
-script = ExtResource("2_b4h5c")
+script = ExtResource("2_n532f")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("RectangleShape2D_0ugnh")

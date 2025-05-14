@@ -4,11 +4,11 @@
 [ext_resource type="Script" path="res://towers/tower place/DiscShooterPlace.gd" id="2_xpbnm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lvjdx"]
-radius = 112.528
+radius = 112.5
 
 [node name="Sprite2D" type="Sprite2D"]
 z_index = 4
-scale = Vector2(0.35, 0.35)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("1_wrx0h")
 script = ExtResource("2_xpbnm")
 
@@ -21,5 +21,3 @@ shape = SubResource("CircleShape2D_lvjdx")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

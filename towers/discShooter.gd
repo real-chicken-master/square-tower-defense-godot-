@@ -30,7 +30,7 @@ func getTarget():
 	for n in targets.size():
 		TargetProgress = targets[n].getProgress()
 		if(is_instance_valid(target)):
-			if(target.getProgress()>TargetProgress):
+			if(target.getProgress()<TargetProgress):
 				target = targets[n]
 		else:
 			target = targets[n]

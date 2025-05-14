@@ -2,7 +2,7 @@ extends Node2D
 
 var disc_scene = preload("res://towers/projectiles/disc.tscn")
 
-var redSquare_scene = preload("res://squares (enemies)/redSquare.tscn")
+var Square_scene = preload("res://squares (enemies)/squareBase.tscn")
 
 var discShooterPlace_scene = preload("res://towers/tower place/DiscShooterPlace.tscn")
 var discShooter_scene = preload("res://towers/discShooter.tscn")
@@ -11,8 +11,6 @@ func _ready():
 	connectSignals()
 
 func connectSignals():
-	for towers in get_tree().get_nodes_in_group("towers"):
-		towers.connect("shootDisc",_on_disc_shooter_shoot_disc)
 	for Squares in get_tree().get_nodes_in_group("squares"):
 		Squares.connect("createSquare",createSquare)
 	$UI/UI.connect("towerplace",towerPlace)
@@ -26,14 +24,16 @@ func towerPlace(towerType):
 func placeTower(towerType,pos):
 	if(towerType == "discShooter"):
 		var discShooter = discShooter_scene.instantiate() as CharacterBody2D
+		discShooter.connect("shootDisc",_on_disc_shooter_shoot_disc)
 		discShooter.position = pos
 		$towers.add_child(discShooter)
 		pass
 
 func createSquare(type):
-	if(type == "blue"):
-		var redSquare = redSquare_scene.instantiate() as PathFollow2D
-		$CanvasLayer/BoxContainer/SquarePath/path2d.add_child(redSquare)
+	if(type == "red"):
+		var square = Square_scene.instantiate() as PathFollow2D
+		square.health = 1
+		$CanvasLayer/BoxContainer/SquarePath/path2d.add_child(square)
 
 func _on_disc_shooter_shoot_disc(pos, direction,damage):
 	var disc = disc_scene.instantiate() as Area2D
@@ -41,4 +41,10 @@ func _on_disc_shooter_shoot_disc(pos, direction,damage):
 	disc.direction = direction
 	disc.damage = damage
 	$towers/projectiles.add_child(disc)
+
+
+func wave1():
+	createSquare("red")
+
+
 
