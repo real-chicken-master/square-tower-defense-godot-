@@ -44,7 +44,10 @@ func _on_disc_shooter_shoot_disc(pos, direction,damage):
 
 
 func wave1():
-	createSquare("red")
+	for num in 50:
+		createSquare("red")
+		var spawnDelay := Timer.new() 
+		await get_tree().create_timer(0.2).timeout
 
 
 func _on_ui_start_next_wave(waveNumber):
@@ -52,6 +55,6 @@ func _on_ui_start_next_wave(waveNumber):
 		wave1()
 
 
-func _on_path_2d_child_exiting_tree(node):
+func _on_path_2d_child_exiting_tree(_node):
 	if ($SquarePath/path2d.get_child_count()==1):
 		Globals.waveInProgress = false

@@ -32,6 +32,7 @@ polygon = PackedVector2Array(-48.3095, -12.9336, -49.998, 0.00346327, -48.2929, 
 position = Vector2(0.243256, -74.3728)
 
 [node name="shootDelay" type="Timer" parent="."]
+wait_time = 0.3
 
 [connection signal="body_entered" from="noticeArea" to="." method="_on_notice_area_body_entered"]
 [connection signal="body_exited" from="noticeArea" to="." method="_on_notice_area_body_exited"]

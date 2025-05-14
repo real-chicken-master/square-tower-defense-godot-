@@ -26,7 +26,7 @@ func _on_button_button_down():
 		towerType = "disc Shooter"
 		towerplace.emit(towerType)
 
-func _process(delta):
+func _process(_delta):
 	health = Globals.health
 	money = Globals.money
 	wave = Globals.wave
