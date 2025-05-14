@@ -20,7 +20,9 @@ var wave
 
 const discShooterPrice = 50
 
-func _on_button_button_down():
+const sniperPrice = 100
+
+func _on_disc_shooter_button_down():
 	if(money >= discShooterPrice):
 		Globals.money -= discShooterPrice
 		towerType = "disc Shooter"
@@ -43,6 +45,10 @@ func updateTowerButtons():
 		$"sidebar (towers)/VBoxContainer/discShooter".modulate = Color.WHITE
 	else:
 		$"sidebar (towers)/VBoxContainer/discShooter".modulate = Color.RED
+	if(money >= sniperPrice):
+		$"sidebar (towers)/VBoxContainer/sniper".modulate = Color.WHITE
+	else:
+		$"sidebar (towers)/VBoxContainer/sniper".modulate = Color.RED
 
 
 func _on_start_wave_button_down():
@@ -51,3 +57,10 @@ func _on_start_wave_button_down():
 		Globals.wave += 1
 		wave = Globals.wave
 		startNextWave.emit(wave)
+
+
+func _on_sniper_button_down():
+		if(money >= sniperPrice):
+			Globals.money -= sniperPrice
+			towerType = "sniper"
+			towerplace.emit(towerType)

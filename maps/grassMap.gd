@@ -7,6 +7,9 @@ var Square_scene = preload("res://squares (enemies)/squareBase.tscn")
 var discShooterPlace_scene = preload("res://towers/tower place/DiscShooterPlace.tscn")
 var discShooter_scene = preload("res://towers/discShooter.tscn")
 
+var sniperPlace_scene = preload("res://towers/tower place/sniperPlace.tscn")
+var sniper_scene = preload("res://towers/sniper.tscn")
+
 func _ready():
 	connectSignals()
 
@@ -20,13 +23,23 @@ func towerPlace(towerType):
 		var DiscShooterPlace = discShooterPlace_scene.instantiate() as Sprite2D
 		DiscShooterPlace.connect("placeTower",placeTower)
 		$towers/towerPlaceIcons.add_child(DiscShooterPlace)
+	if(towerType == "sniper"):
+		var sniperPlace = sniperPlace_scene.instantiate() as Sprite2D
+		sniperPlace.connect("placeTower",placeTower)
+		$towers/towerPlaceIcons.add_child(sniperPlace)
 
 func placeTower(towerType,pos):
 	if(towerType == "discShooter"):
 		var discShooter = discShooter_scene.instantiate() as CharacterBody2D
 		discShooter.connect("shootDisc",_on_disc_shooter_shoot_disc)
-		discShooter.position = pos
+		discShooter.global_position = pos
 		$towers.add_child(discShooter)
+		pass
+	if(towerType == "sniper"):
+		var sniper = sniper_scene.instantiate() as CharacterBody2D
+		sniper.connect("shootDisc",_on_disc_shooter_shoot_disc)
+		sniper.global_position = pos
+		$towers.add_child(sniper)
 		pass
 
 func createSquare(type):
@@ -40,7 +53,7 @@ func createSquare(type):
 		$SquarePath/path2d.add_child(square)
 	if(type == "yellow"):
 		var square = Square_scene.instantiate() as PathFollow2D
-		square.health = 4
+		square.health = 3
 		$SquarePath/path2d.add_child(square)
 
 func _on_disc_shooter_shoot_disc(pos, direction,damage):
@@ -64,11 +77,24 @@ func wave2():
 		createSquare("blue")
 		await get_tree().create_timer(0.2).timeout
 
+func wave3():
+	for num in 10:
+		createSquare("red")
+		await get_tree().create_timer(0.2).timeout
+	for num in 20:
+		createSquare("blue")
+		await get_tree().create_timer(0.2).timeout
+	for num in 20:
+		createSquare("yellow")
+		await get_tree().create_timer(0.2).timeout
+
 func _on_ui_start_next_wave(waveNumber):
 	if(waveNumber == 1):
 		wave1()
 	if(waveNumber == 2):
 		wave2()
+	if(waveNumber == 3):
+		wave3()
 
 
 func _on_path_2d_child_exiting_tree(_node):
