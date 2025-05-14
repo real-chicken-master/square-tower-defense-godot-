@@ -12,11 +12,13 @@ func _ready():
 
 func _process(delta):
 	if(progress_ratio == 1):
+		Globals.health -= health
 		queue_free()
 	updateSquareColor()
 	progress += speed*delta
 
 func hit(damage):
+	Globals.money += damage
 	health -= damage
 	updateSquareColor()
 
