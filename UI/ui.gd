@@ -1,5 +1,11 @@
 extends Control
 
+const discShooterPrice = 50
+
+const sniperPrice = 75
+
+const sprayerPrice = 100
+
 signal towerplace(TowerType)
 
 signal startNextWave(waveNumber)
@@ -18,16 +24,14 @@ var wave
 
 @onready var moneyLabel = $"topbar (Stats)/HBoxContainer/$image/money"
 
-const discShooterPrice = 50
+var upgradeTowerType
 
-const sniperPrice = 75
-
-const sprayerPrice = 100
+var upgradeTowerNode
 
 func _ready():
-	$"sidebar (towers)/VBoxContainer/discShooter".text = "$"+str(discShooterPrice)
-	$"sidebar (towers)/VBoxContainer/sniper".text = "$"+str(sniperPrice)
-	$"sidebar (towers)/VBoxContainer/sprayer".text = "$"+str(sprayerPrice)
+	$"sidebar (towers)/VBoxContainer(buttons)/discShooter".text = "$"+str(discShooterPrice)
+	$"sidebar (towers)/VBoxContainer(buttons)/sniper".text = "$"+str(sniperPrice)
+	$"sidebar (towers)/VBoxContainer(buttons)/sprayer".text = "$"+str(sprayerPrice)
 
 func _on_disc_shooter_button_down():
 	if(money >= discShooterPrice):
@@ -63,17 +67,17 @@ func updateStats():
 
 func updateTowerButtons():
 	if(money >= discShooterPrice):
-		$"sidebar (towers)/VBoxContainer/discShooter".modulate = Color.WHITE
+		$"sidebar (towers)/VBoxContainer(buttons)/discShooter".modulate = Color.WHITE
 	else:
-		$"sidebar (towers)/VBoxContainer/discShooter".modulate = Color.RED
+		$"sidebar (towers)/VBoxContainer(buttons)/discShooter".modulate = Color.RED
 	if(money >= sniperPrice):
-		$"sidebar (towers)/VBoxContainer/sniper".modulate = Color.WHITE
+		$"sidebar (towers)/VBoxContainer(buttons)/sniper".modulate = Color.WHITE
 	else:
-		$"sidebar (towers)/VBoxContainer/sniper".modulate = Color.RED
+		$"sidebar (towers)/VBoxContainer(buttons)/sniper".modulate = Color.RED
 	if(money >= sprayerPrice):
-		$"sidebar (towers)/VBoxContainer/sprayer".modulate = Color.WHITE
+		$"sidebar (towers)/VBoxContainer(buttons)/sprayer".modulate = Color.WHITE
 	else:
-		$"sidebar (towers)/VBoxContainer/sprayer".modulate = Color.RED
+		$"sidebar (towers)/VBoxContainer(buttons)/sprayer".modulate = Color.RED
 
 
 func _on_start_wave_button_down():
@@ -82,5 +86,22 @@ func _on_start_wave_button_down():
 		wave = Globals.wave
 		startNextWave.emit(wave)
 
+func towerUpgrade(upgradeBranch1,tower,towerNode):
+	$"sidebar (towers)/VBoxContainer(buttons)".visible = false
+	$"sidebar (towers)/VBoxContainer(upgrades)".visible = true
+	upgradeTowerType = tower
+	upgradeTowerNode = towerNode
+	if(tower == "sprayer"):
+		pass
 
 
+func _on_upgrade_branch_1_button_down():
+	if(upgradeTowerType == "sprayer"):
+		upgradeTowerNode.attackSpeed *= 1.1
+
+
+func _on_exit_button_down():
+	$"sidebar (towers)/VBoxContainer(buttons)".visible = true
+	$"sidebar (towers)/VBoxContainer(upgrades)".visible = false
+	upgradeTowerType = null
+	upgradeTowerNode = null

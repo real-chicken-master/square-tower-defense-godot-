@@ -49,6 +49,7 @@ func placeTower(towerType,pos):
 	if(towerType == "sprayer"):
 		var sprayer = sprayer_scene.instantiate() as CharacterBody2D
 		sprayer.connect("shootDisc",shoot_disc)
+		sprayer.connect("sprayerUpgrade",towerUpgrade)
 		sprayer.global_position = pos
 		$towers.add_child(sprayer)
 
@@ -123,7 +124,8 @@ func _on_ui_start_next_wave(waveNumber):
 	if(!Globals.waveInProgress):
 		Globals.wave = 0
 
-
+func towerUpgrade(upgradeBranch1,tower,towerNode):
+	$UI/UI.towerUpgrade(upgradeBranch1,tower,towerNode)
 
 
 func _on_character_body_2d_shoot_disc(pos, direction, damage):
