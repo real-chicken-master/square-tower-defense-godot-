@@ -91,8 +91,6 @@ func towerUpgrade(upgradeBranch1,tower,towerNode):
 	$"sidebar (towers)/VBoxContainer(upgrades)".visible = true
 	upgradeTowerType = tower
 	upgradeTowerNode = towerNode
-	if(tower == "sprayer"):
-		pass
 
 
 func _on_upgrade_branch_1_button_down():

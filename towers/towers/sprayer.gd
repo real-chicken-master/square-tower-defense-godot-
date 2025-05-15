@@ -7,9 +7,9 @@ signal sprayerUpgrade(int,String,Self)
 var upgradeBranch1 = 0
 
 var attackSpeed = 1:
-	set(attackSpeed):
+	set(attackspeed):
+		attackSpeed = attackspeed
 		$shootDelay.wait_time = 0.7 / attackSpeed
-		print($shootDelay.wait_time)
 
 var notice = false
 
