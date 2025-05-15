@@ -22,15 +22,31 @@ const discShooterPrice = 50
 
 const sniperPrice = 75
 
+const sprayerPrice = 100
+
 func _ready():
 	$"sidebar (towers)/VBoxContainer/discShooter".text = "$"+str(discShooterPrice)
 	$"sidebar (towers)/VBoxContainer/sniper".text = "$"+str(sniperPrice)
+	$"sidebar (towers)/VBoxContainer/sprayer".text = "$"+str(sprayerPrice)
 
 func _on_disc_shooter_button_down():
 	if(money >= discShooterPrice):
 		Globals.money -= discShooterPrice
 		towerType = "disc Shooter"
 		towerplace.emit(towerType)
+
+func _on_sniper_button_down():
+		if(money >= sniperPrice):
+			Globals.money -= sniperPrice
+			towerType = "sniper"
+			towerplace.emit(towerType)
+
+
+func _on_sprayer_button_down():
+		if(money >= sprayerPrice):
+			Globals.money -= sprayerPrice
+			towerType = "sprayer"
+			towerplace.emit(towerType)
 
 func _process(_delta):
 	health = Globals.health
@@ -54,6 +70,10 @@ func updateTowerButtons():
 		$"sidebar (towers)/VBoxContainer/sniper".modulate = Color.WHITE
 	else:
 		$"sidebar (towers)/VBoxContainer/sniper".modulate = Color.RED
+	if(money >= sprayerPrice):
+		$"sidebar (towers)/VBoxContainer/sprayer".modulate = Color.WHITE
+	else:
+		$"sidebar (towers)/VBoxContainer/sprayer".modulate = Color.RED
 
 
 func _on_start_wave_button_down():
@@ -63,8 +83,4 @@ func _on_start_wave_button_down():
 		startNextWave.emit(wave)
 
 
-func _on_sniper_button_down():
-		if(money >= sniperPrice):
-			Globals.money -= sniperPrice
-			towerType = "sniper"
-			towerplace.emit(towerType)
+

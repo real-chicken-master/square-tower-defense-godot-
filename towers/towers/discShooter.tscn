@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://gcjunndw6jc7"]
 
-[ext_resource type="Script" path="res://towers/discShooter.gd" id="1_fv5p4"]
-[ext_resource type="Texture2D" uid="uid://dvxdyo2rrwf4m" path="res://images/DiscShooter.png" id="2_gs0ye"]
+[ext_resource type="Script" path="res://towers/towers/discShooter.gd" id="1_g2ggk"]
+[ext_resource type="Texture2D" uid="uid://dvxdyo2rrwf4m" path="res://images/DiscShooter.png" id="2_0a7ko"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0k1ym"]
 radius = 370.0
@@ -13,7 +13,7 @@ radius = 51.25
 scale = Vector2(0.8, 0.8)
 collision_layer = 10
 collision_mask = 3
-script = ExtResource("1_fv5p4")
+script = ExtResource("1_g2ggk")
 
 [node name="noticeArea" type="Area2D" parent="."]
 collision_layer = 0
@@ -32,7 +32,7 @@ wait_time = 0.3
 [node name="DiscShooter" type="Sprite2D" parent="."]
 position = Vector2(7.10543e-15, -8.75001)
 scale = Vector2(0.85, 0.8375)
-texture = ExtResource("2_gs0ye")
+texture = ExtResource("2_0a7ko")
 
 [node name="Marker2D" type="Marker2D" parent="DiscShooter"]
 position = Vector2(-2.98023e-08, -88.2353)

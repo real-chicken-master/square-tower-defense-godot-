@@ -5,10 +5,13 @@ var disc_scene = preload("res://towers/projectiles/disc.tscn")
 var Square_scene = preload("res://squares (enemies)/squareBase.tscn")
 
 var discShooterPlace_scene = preload("res://towers/tower place/DiscShooterPlace.tscn")
-var discShooter_scene = preload("res://towers/discShooter.tscn")
+var discShooter_scene = preload("res://towers/towers/discShooter.tscn")
 
 var sniperPlace_scene = preload("res://towers/tower place/sniperPlace.tscn")
-var sniper_scene = preload("res://towers/sniper.tscn")
+var sniper_scene = preload("res://towers/towers/sniper.tscn")
+
+var sprayerPlace_scene = preload("res://towers/tower place/sprayerPlace.tscn")
+var sprayer_scene = preload("res://towers/towers/sprayer.tscn")
 
 func _ready():
 	connectSignals()
@@ -27,6 +30,11 @@ func towerPlace(towerType):
 		var sniperPlace = sniperPlace_scene.instantiate() as Sprite2D
 		sniperPlace.connect("placeTower",placeTower)
 		$towers/towerPlaceIcons.add_child(sniperPlace)
+	if(towerType == "sprayer"):
+		var sprayerPlace = sprayerPlace_scene.instantiate() as Sprite2D
+		sprayerPlace.connect("placeTower",placeTower)
+		$towers/towerPlaceIcons.add_child(sprayerPlace)
+
 
 func placeTower(towerType,pos):
 	if(towerType == "discShooter"):
@@ -34,12 +42,15 @@ func placeTower(towerType,pos):
 		discShooter.connect("shootDisc",shoot_disc)
 		discShooter.global_position = pos
 		$towers.add_child(discShooter)
-		pass
 	if(towerType == "sniper"):
 		var sniper = sniper_scene.instantiate() as CharacterBody2D
 		sniper.global_position = pos
 		$towers.add_child(sniper)
-		pass
+	if(towerType == "sprayer"):
+		var sprayer = sprayer_scene.instantiate() as CharacterBody2D
+		sprayer.connect("shootDisc",shoot_disc)
+		sprayer.global_position = pos
+		$towers.add_child(sprayer)
 
 func createSquare(type):
 	if(type == "red"):
@@ -71,8 +82,6 @@ func wave1():
 	for num in 50:
 		createSquare("red")
 		await get_tree().create_timer(0.2).timeout
-	await $SquarePath/path2d.get_child_count()==1
-	Globals.waveInProgress = false
 
 func wave2():
 	for num in 20:
@@ -81,8 +90,6 @@ func wave2():
 	for num in 20:
 		createSquare("blue")
 		await get_tree().create_timer(0.2).timeout
-	await $SquarePath/path2d.get_child_count()==1
-	Globals.waveInProgress = false
 
 func wave3():
 	for num in 10:
@@ -94,15 +101,11 @@ func wave3():
 	for num in 20:
 		createSquare("yellow")
 		await get_tree().create_timer(0.2).timeout
-	await $SquarePath/path2d.get_child_count()==1
-	Globals.waveInProgress = false
 
 func wave4():
 	for num in 10:
 		createSquare("green")
 		await get_tree().create_timer(0.3).timeout
-	await $SquarePath/path2d.get_child_count()==1
-	Globals.waveInProgress = false
 
 func _on_ui_start_next_wave(waveNumber):
 	if(waveNumber == 1):
@@ -125,3 +128,8 @@ func _on_ui_start_next_wave(waveNumber):
 
 func _on_character_body_2d_shoot_disc(pos, direction, damage):
 	shoot_disc(pos, direction, damage)
+
+func _process(_delta):
+	if(Globals.waveInProgress == true):
+		if ($SquarePath/path2d.get_child_count() == 0):
+			Globals.waveInProgress = false

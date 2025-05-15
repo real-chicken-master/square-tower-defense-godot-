@@ -1,15 +1,16 @@
 [gd_scene load_steps=5 format=3 uid="uid://cbd3r4kd8smbh"]
 
-[ext_resource type="Script" path="res://towers/sprayer.gd" id="1_3n024"]
-[ext_resource type="Texture2D" uid="uid://b5ercht40rkdq" path="res://images/sprayer.png" id="1_b3l7h"]
+[ext_resource type="Script" path="res://towers/towers/sprayer.gd" id="1_3n024"]
+[ext_resource type="Texture2D" uid="uid://ba68w61iocl47" path="res://images/sprayer.png" id="1_b3l7h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7ajpk"]
-radius = 125.503
+radius = 147.947
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5jt0h"]
 radius = 35.5152
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+scale = Vector2(0.8, 0.8)
 collision_layer = 10
 collision_mask = 3
 script = ExtResource("1_3n024")
@@ -26,20 +27,20 @@ shape = SubResource("CircleShape2D_5jt0h")
 [node name="Sprayer" type="Sprite2D" parent="."]
 texture = ExtResource("1_b3l7h")
 
-[node name="Marker2D" type="Marker2D" parent="Sprayer"]
-position = Vector2(0.197598, -44.4655)
+[node name="Marker2DTop" type="Marker2D" parent="Sprayer"]
+position = Vector2(-0.223323, -78.5603)
 
-[node name="Marker2D2" type="Marker2D" parent="Sprayer"]
-position = Vector2(-47.7593, 0.0643578)
+[node name="Marker2DLeft" type="Marker2D" parent="Sprayer"]
+position = Vector2(-77.6037, -0.486858)
 
-[node name="Marker2D3" type="Marker2D" parent="Sprayer"]
-position = Vector2(47.1214, 0.00867653)
+[node name="Marker2DRight" type="Marker2D" parent="Sprayer"]
+position = Vector2(76.5105, -0.433266)
 
-[node name="Marker2D4" type="Marker2D" parent="Sprayer"]
-position = Vector2(-0.0133018, 45.3736)
+[node name="Marker2DBottom" type="Marker2D" parent="Sprayer"]
+position = Vector2(-0.376774, 77.2285)
 
 [node name="shootDelay" type="Timer" parent="."]
-wait_time = 1.2
+wait_time = 0.7
 
 [connection signal="body_entered" from="noticeArea" to="." method="_on_notice_area_body_entered"]
 [connection signal="body_exited" from="noticeArea" to="." method="_on_notice_area_body_exited"]

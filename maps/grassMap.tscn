@@ -1,11 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://cemlr2vbce2kw"]
+[gd_scene load_steps=10 format=3 uid="uid://cemlr2vbce2kw"]
 
 [ext_resource type="PackedScene" uid="uid://uqmsffodfali" path="res://maps/mapBase.tscn" id="1_dgd4r"]
 [ext_resource type="Script" path="res://maps/grassMap.gd" id="2_qnl7v"]
 [ext_resource type="PackedScene" uid="uid://bnwvefyvc5koy" path="res://UI/ui.tscn" id="3_7oe5r"]
 [ext_resource type="Texture2D" uid="uid://e1c7q5w4qyjt" path="res://images/brick.png" id="5_h0wfq"]
 [ext_resource type="Texture2D" uid="uid://qnvj5rjakmih" path="res://images/grass.png" id="6_tm8fv"]
-[ext_resource type="PackedScene" uid="uid://cbd3r4kd8smbh" path="res://towers/sprayer.tscn" id="6_tvquu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v162i"]
 texture = ExtResource("5_h0wfq")
@@ -56,9 +55,6 @@ polygon = PackedVector2Array(-3200.4, -1617.22, 668.229, -1177.2, 311.016, 97.18
 
 [node name="towerPlaceIcons" type="Node2D" parent="towers" index="1"]
 
-[node name="CharacterBody2D" parent="towers" index="2" instance=ExtResource("6_tvquu")]
-position = Vector2(660.6, 431.146)
-
 [node name="SquarePath" parent="." index="3"]
 metadata/_edit_lock_ = true
 
@@ -69,5 +65,4 @@ curve = SubResource("Curve2D_0f2c1")
 metadata/_edit_lock_ = true
 
 [connection signal="startNextWave" from="UI/UI" to="." method="_on_ui_start_next_wave"]
-[connection signal="shootDisc" from="towers/CharacterBody2D" to="." method="_on_character_body_2d_shoot_disc"]
 [connection signal="child_exiting_tree" from="SquarePath/path2d" to="." method="_on_path_2d_child_exiting_tree"]

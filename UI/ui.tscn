@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bnwvefyvc5koy"]
+[gd_scene load_steps=7 format=3 uid="uid://bnwvefyvc5koy"]
 
 [ext_resource type="Script" path="res://UI/ui.gd" id="1_palqw"]
 [ext_resource type="Texture2D" uid="uid://dvxdyo2rrwf4m" path="res://images/DiscShooter.png" id="2_hmbaw"]
 [ext_resource type="Texture2D" uid="uid://1dlamtkj2e3n" path="res://images/sniper.png" id="3_q8l72"]
+[ext_resource type="Texture2D" uid="uid://ba68w61iocl47" path="res://images/sprayer.png" id="4_ds61g"]
 [ext_resource type="Texture2D" uid="uid://q06m8hn7fdjh" path="res://images/heart.png" id="4_ghevu"]
 [ext_resource type="Texture2D" uid="uid://cq6dsv85bfgwb" path="res://images/$sign.png" id="5_2k8rc"]
 
@@ -30,7 +31,7 @@ anchors_preset = -1
 anchor_left = 0.1
 anchor_top = 0.1
 anchor_right = 0.9
-anchor_bottom = 1.0
+anchor_bottom = 0.9
 offset_top = -0.200005
 offset_right = -0.0400085
 grow_vertical = 2
@@ -52,6 +53,17 @@ size_flags_horizontal = 4
 size_flags_vertical = 6
 text = "$100"
 icon = ExtResource("3_q8l72")
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="sprayer" type="Button" parent="sidebar (towers)/VBoxContainer"]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+size_flags_stretch_ratio = 20.0
+text = "$100"
+icon = ExtResource("4_ds61g")
 icon_alignment = 1
 vertical_icon_alignment = 0
 
@@ -138,4 +150,5 @@ vertical_alignment = 1
 
 [connection signal="button_down" from="sidebar (towers)/VBoxContainer/discShooter" to="." method="_on_disc_shooter_button_down"]
 [connection signal="button_down" from="sidebar (towers)/VBoxContainer/sniper" to="." method="_on_sniper_button_down"]
+[connection signal="button_down" from="sidebar (towers)/VBoxContainer/sprayer" to="." method="_on_sprayer_button_down"]
 [connection signal="button_down" from="sidebar (towers)/start wave" to="." method="_on_start_wave_button_down"]
