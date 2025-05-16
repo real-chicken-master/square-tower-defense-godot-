@@ -37,7 +37,7 @@ offset_top = -0.200005
 offset_right = -0.0400085
 grow_vertical = 2
 
-[node name="discShooter" type="Button" parent="sidebar (towers)/VBoxContainer(buttons)"]
+[node name="discShooter" type="Button" parent="sidebar (towers)/VBoxContainer(buttons)" groups=["button"]]
 modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -47,7 +47,7 @@ icon = ExtResource("2_hmbaw")
 icon_alignment = 1
 vertical_icon_alignment = 0
 
-[node name="sniper" type="Button" parent="sidebar (towers)/VBoxContainer(buttons)"]
+[node name="sniper" type="Button" parent="sidebar (towers)/VBoxContainer(buttons)" groups=["button"]]
 modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -57,7 +57,7 @@ icon = ExtResource("3_q8l72")
 icon_alignment = 1
 vertical_icon_alignment = 0
 
-[node name="sprayer" type="Button" parent="sidebar (towers)/VBoxContainer(buttons)"]
+[node name="sprayer" type="Button" parent="sidebar (towers)/VBoxContainer(buttons)" groups=["button"]]
 modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -84,7 +84,7 @@ layout_mode = 2
 size_flags_vertical = 2
 horizontal_alignment = 1
 
-[node name="upgradeBranch1" type="Button" parent="sidebar (towers)/VBoxContainer(upgrades)"]
+[node name="upgradeBranch1" type="Button" parent="sidebar (towers)/VBoxContainer(upgrades)" groups=["button"]]
 modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 size_flags_vertical = 3
@@ -93,7 +93,7 @@ text_overrun_behavior = 2
 icon_alignment = 1
 vertical_icon_alignment = 0
 
-[node name="upgradeBranch2" type="Button" parent="sidebar (towers)/VBoxContainer(upgrades)"]
+[node name="upgradeBranch2" type="Button" parent="sidebar (towers)/VBoxContainer(upgrades)" groups=["button"]]
 modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 size_flags_vertical = 3
@@ -102,7 +102,7 @@ clip_text = true
 icon_alignment = 1
 vertical_icon_alignment = 0
 
-[node name="start wave" type="Button" parent="sidebar (towers)"]
+[node name="start wave" type="Button" parent="sidebar (towers)" groups=["button"]]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
