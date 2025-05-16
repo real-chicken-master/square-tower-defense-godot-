@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://jyxgvahhmewy"]
+[gd_scene load_steps=6 format=3 uid="uid://jyxgvahhmewy"]
 
 [ext_resource type="Script" path="res://towers/towers/sniper.gd" id="1_ysv2g"]
 [ext_resource type="Texture2D" uid="uid://1dlamtkj2e3n" path="res://images/sniper.png" id="2_b47du"]
+[ext_resource type="Texture2D" uid="uid://d30yqw72fwwi4" path="res://images/circle.png" id="3_svpfh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4xvhm"]
 radius = 56.3028
@@ -33,6 +34,13 @@ visible = false
 shape = SubResource("CircleShape2D_q6mcy")
 
 [node name="shootDelay" type="Timer" parent="."]
+
+[node name="noticeCircle" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.313726)
+position = Vector2(0.348101, -1.15697)
+scale = Vector2(10, 10)
+texture = ExtResource("3_svpfh")
 
 [connection signal="body_entered" from="noticeArea" to="." method="_on_notice_area_body_entered"]
 [connection signal="body_exited" from="noticeArea" to="." method="_on_notice_area_body_exited"]

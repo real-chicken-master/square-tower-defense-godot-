@@ -30,7 +30,6 @@ func hit(damage):
 
 func updateSquareColor():
 	if(currentHealth <= 0):
-		Globals.squaresLeftInWave -= 1
 		queue_free()
 	if(currentHealth == 1):
 		$CharacterBody2D.modulate = Color(255,0,0,255)
@@ -44,3 +43,8 @@ func updateSquareColor():
 	if(currentHealth >= 4 && currentHealth <= 6):
 		$CharacterBody2D.modulate = Color(0,255,0,255)
 		speed = 500
+
+
+
+func _on_tree_exiting():
+	Globals.squaresLeftInWave -= 1

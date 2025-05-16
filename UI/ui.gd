@@ -85,6 +85,7 @@ func updateTowerButtons():
 
 func _on_start_wave_button_down():
 	if(!Globals.waveInProgress):
+		Globals.waveInProgress = true
 		Globals.wave += 1
 		wave = Globals.wave
 		startNextWave.emit(wave)
@@ -108,13 +109,12 @@ func _on_upgrade_branch_1_button_down():
 	updateUpgradeButtons()
 
 
-func _on_exit_button_down():
-	$"sidebar (towers)/VBoxContainer(buttons)".visible = true
-	$"sidebar (towers)/VBoxContainer(upgrades)".visible = false
-	upgradeTowerType = null
-	upgradeTowerNode = null
-
-
 func _on_upgrade_branch_2_button_down():
 		upgradeTowerNode.Damage *= 1.1
 		updateUpgradeButtons()
+
+func upgradeStop():
+	$"sidebar (towers)/VBoxContainer(buttons)".visible = true
+	$"sidebar (towers)/VBoxContainer(upgrades)".visible = false
+	upgradeTowerNode = null
+	upgradeTowerType = null

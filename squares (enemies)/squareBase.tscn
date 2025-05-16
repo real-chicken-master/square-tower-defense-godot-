@@ -19,3 +19,5 @@ shape = SubResource("RectangleShape2D_0ugnh")
 
 [node name="Polygon2D" type="Polygon2D" parent="CharacterBody2D"]
 polygon = PackedVector2Array(-25, -25, 25, -25, 25, 25, -25, 25)
+
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]

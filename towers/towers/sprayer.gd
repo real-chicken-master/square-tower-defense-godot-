@@ -4,6 +4,8 @@ signal shootDisc(pos,direction,damage)
 
 signal sprayerUpgrade(int,String,Self)
 
+signal upgradeStop()
+
 var upgradeBranch1 = 0
 
 var attackSpeed = 1:
@@ -66,6 +68,10 @@ func _input(event):
 		if(event.button_index == MOUSE_BUTTON_LEFT):
 			if($Sprayer.is_pixel_opaque(get_local_mouse_position())):
 				sprayerUpgrade.emit(upgradeBranch1,"sprayer",self)
+				$noticeCircle.visible = true
+			else:
+				$noticeCircle.visible = false
+				upgradeStop.emit()
 
 
 

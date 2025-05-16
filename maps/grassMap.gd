@@ -35,23 +35,28 @@ func towerPlace(towerType):
 		sprayerPlace.connect("placeTower",placeTower)
 		$towers/towerPlaceIcons.add_child(sprayerPlace)
 
+func upgradeStop():
+	$UI/UI.upgradeStop()
 
 func placeTower(towerType,pos):
 	if(towerType == "discShooter"):
 		var discShooter = discShooter_scene.instantiate() as CharacterBody2D
 		discShooter.connect("discShooterUpgrade",towerUpgrade)
 		discShooter.connect("shootDisc",shoot_disc)
+		discShooter.connect("upgradeStop",upgradeStop)
 		discShooter.global_position = pos
 		$towers.add_child(discShooter)
 	if(towerType == "sniper"):
 		var sniper = sniper_scene.instantiate() as CharacterBody2D
 		sniper.connect("sniperUpgrade",towerUpgrade)
+		sniper.connect("upgradeStop",upgradeStop)
 		sniper.global_position = pos
 		$towers.add_child(sniper)
 	if(towerType == "sprayer"):
 		var sprayer = sprayer_scene.instantiate() as CharacterBody2D
 		sprayer.connect("shootDisc",shoot_disc)
 		sprayer.connect("sprayerUpgrade",towerUpgrade)
+		sprayer.connect("upgradeStop",upgradeStop)
 		sprayer.global_position = pos
 		$towers.add_child(sprayer)
 

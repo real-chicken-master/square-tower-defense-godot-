@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbd3r4kd8smbh"]
+[gd_scene load_steps=6 format=3 uid="uid://cbd3r4kd8smbh"]
 
 [ext_resource type="Script" path="res://towers/towers/sprayer.gd" id="1_3n024"]
 [ext_resource type="Texture2D" uid="uid://ba68w61iocl47" path="res://images/sprayer.png" id="1_b3l7h"]
+[ext_resource type="Texture2D" uid="uid://d30yqw72fwwi4" path="res://images/circle.png" id="3_ohc1u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7ajpk"]
 radius = 147.947
@@ -41,6 +42,13 @@ position = Vector2(-0.376774, 77.2285)
 
 [node name="shootDelay" type="Timer" parent="."]
 wait_time = 0.7
+
+[node name="noticeCircle" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.313726)
+position = Vector2(0.00230294, 0.0109633)
+scale = Vector2(0.591838, 0.591899)
+texture = ExtResource("3_ohc1u")
 
 [connection signal="body_entered" from="noticeArea" to="." method="_on_notice_area_body_entered"]
 [connection signal="body_exited" from="noticeArea" to="." method="_on_notice_area_body_exited"]

@@ -79,13 +79,6 @@ offset_top = -0.200005
 offset_right = -0.0400085
 grow_vertical = 2
 
-[node name="exit" type="Button" parent="sidebar (towers)/VBoxContainer(upgrades)"]
-modulate = Color(1, 0, 0, 1)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-text = "X"
-
 [node name="Label" type="Label" parent="sidebar (towers)/VBoxContainer(upgrades)"]
 layout_mode = 2
 size_flags_vertical = 2
@@ -193,7 +186,6 @@ vertical_alignment = 1
 [connection signal="button_down" from="sidebar (towers)/VBoxContainer(buttons)/discShooter" to="." method="_on_disc_shooter_button_down"]
 [connection signal="button_down" from="sidebar (towers)/VBoxContainer(buttons)/sniper" to="." method="_on_sniper_button_down"]
 [connection signal="button_down" from="sidebar (towers)/VBoxContainer(buttons)/sprayer" to="." method="_on_sprayer_button_down"]
-[connection signal="button_down" from="sidebar (towers)/VBoxContainer(upgrades)/exit" to="." method="_on_exit_button_down"]
 [connection signal="button_down" from="sidebar (towers)/VBoxContainer(upgrades)/upgradeBranch1" to="." method="_on_upgrade_branch_1_button_down"]
 [connection signal="button_down" from="sidebar (towers)/VBoxContainer(upgrades)/upgradeBranch2" to="." method="_on_upgrade_branch_2_button_down"]
 [connection signal="button_down" from="sidebar (towers)/start wave" to="." method="_on_start_wave_button_down"]
