@@ -82,11 +82,13 @@ func shoot_disc(pos, direction,damage):
 
 
 func wave1():
+	Globals.squaresLeftInWave += 50
 	for num in 50:
 		createSquare("red")
 		await get_tree().create_timer(0.2).timeout
 
 func wave2():
+	Globals.squaresLeftInWave += 40
 	for num in 20:
 		createSquare("red")
 		await get_tree().create_timer(0.2).timeout
@@ -95,6 +97,7 @@ func wave2():
 		await get_tree().create_timer(0.2).timeout
 
 func wave3():
+	Globals.squaresLeftInWave += 50
 	for num in 10:
 		createSquare("red")
 		await get_tree().create_timer(0.2).timeout
@@ -106,6 +109,7 @@ func wave3():
 		await get_tree().create_timer(0.2).timeout
 
 func wave4():
+	Globals.squaresLeftInWave += 10
 	for num in 10:
 		createSquare("green")
 		await get_tree().create_timer(0.3).timeout
@@ -133,7 +137,3 @@ func towerUpgrade(upgradeBranch1,tower,towerNode):
 func _on_character_body_2d_shoot_disc(pos, direction, damage):
 	shoot_disc(pos, direction, damage)
 
-func _process(_delta):
-	if(Globals.waveInProgress == true):
-		if ($SquarePath/path2d.get_child_count() == 0):
-			Globals.waveInProgress = false
