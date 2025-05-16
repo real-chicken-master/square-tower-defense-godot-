@@ -9,7 +9,7 @@ var upgradeBranch1 = 0
 var attackSpeed = 1:
 	set(attackspeed):
 		attackSpeed = attackspeed
-		$shootDelay.wait_time = 0.7 / attackSpeed
+		$shootDelay.wait_time /= attackSpeed
 
 var notice = false
 

@@ -6,7 +6,10 @@ var speed = 0
 
 @export var health = 2
 
+var currentHealth
+
 func _ready():
+	currentHealth = health
 	updateSquareColor()
 	progress = 0
 
@@ -18,22 +21,25 @@ func _process(delta):
 	progress += speed*delta
 
 func hit(damage):
-	Globals.money += damage
-	health -= damage
+	if(damage >= health):
+		Globals.money += health
+	else:
+		Globals.money += floor(damage)
+	currentHealth -= damage
 	updateSquareColor()
 
 func updateSquareColor():
-	if(health <= 0):
+	if(currentHealth <= 0):
 		queue_free()
-	if(health == 1):
+	if(currentHealth == 1):
 		$CharacterBody2D.modulate = Color(255,0,0,255)
 		speed = 200
-	if(health == 2):
+	if(currentHealth == 2):
 		$CharacterBody2D.modulate = Color(0,0,255,255)
 		speed = 200
-	if(health == 3):
+	if(currentHealth == 3):
 		$CharacterBody2D.modulate = Color(255,255,0,255)
 		speed = 500
-	if(health >= 4 && health <= 6):
+	if(currentHealth >= 4 && currentHealth <= 6):
 		$CharacterBody2D.modulate = Color(0,255,0,255)
 		speed = 500

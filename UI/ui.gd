@@ -32,6 +32,9 @@ func _ready():
 	$"sidebar (towers)/VBoxContainer(buttons)/discShooter".text = "$"+str(discShooterPrice)
 	$"sidebar (towers)/VBoxContainer(buttons)/sniper".text = "$"+str(sniperPrice)
 	$"sidebar (towers)/VBoxContainer(buttons)/sprayer".text = "$"+str(sprayerPrice)
+	$"sidebar (towers)/VBoxContainer(buttons)".visible = true
+	$"sidebar (towers)/VBoxContainer(upgrades)".visible = false
+
 
 func _on_disc_shooter_button_down():
 	if(money >= discShooterPrice):
@@ -86,16 +89,18 @@ func _on_start_wave_button_down():
 		wave = Globals.wave
 		startNextWave.emit(wave)
 
-func towerUpgrade(upgradeBranch1,tower,towerNode):
+func towerUpgrade(_upgradeBranch1,tower,towerNode):
 	$"sidebar (towers)/VBoxContainer(buttons)".visible = false
 	$"sidebar (towers)/VBoxContainer(upgrades)".visible = true
 	upgradeTowerType = tower
 	upgradeTowerNode = towerNode
 
+func updateUpgradeButtons():
+		$"sidebar (towers)/VBoxContainer(upgrades)/Label".text = upgradeTowerType + " upgrades"
+		$"sidebar (towers)/VBoxContainer(upgrades)/upgradeBranch1".text = "test"
 
 func _on_upgrade_branch_1_button_down():
-	if(upgradeTowerType == "sprayer"):
-		upgradeTowerNode.attackSpeed *= 1.1
+	upgradeTowerNode.attackSpeed *= 1.1
 
 
 func _on_exit_button_down():
@@ -103,3 +108,7 @@ func _on_exit_button_down():
 	$"sidebar (towers)/VBoxContainer(upgrades)".visible = false
 	upgradeTowerType = null
 	upgradeTowerNode = null
+
+
+func _on_upgrade_branch_2_button_down():
+		upgradeTowerNode.Damage *= 1.1

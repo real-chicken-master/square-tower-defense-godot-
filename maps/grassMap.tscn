@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cemlr2vbce2kw"]
+[gd_scene load_steps=11 format=3 uid="uid://cemlr2vbce2kw"]
 
 [ext_resource type="PackedScene" uid="uid://uqmsffodfali" path="res://maps/mapBase.tscn" id="1_dgd4r"]
 [ext_resource type="Script" path="res://maps/grassMap.gd" id="2_qnl7v"]
 [ext_resource type="PackedScene" uid="uid://bnwvefyvc5koy" path="res://UI/ui.tscn" id="3_7oe5r"]
 [ext_resource type="Texture2D" uid="uid://e1c7q5w4qyjt" path="res://images/brick.png" id="5_h0wfq"]
+[ext_resource type="PackedScene" uid="uid://deyjucdki6ap2" path="res://squares (enemies)/squareBase.tscn" id="6_a841m"]
 [ext_resource type="Texture2D" uid="uid://qnvj5rjakmih" path="res://images/grass.png" id="6_tm8fv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v162i"]
@@ -59,6 +60,11 @@ polygon = PackedVector2Array(-3200.4, -1617.22, 668.229, -1177.2, 311.016, 97.18
 position = Vector2(320, 97)
 scale = Vector2(1.50197, 1.49406)
 curve = SubResource("Curve2D_0f2c1")
+
+[node name="PathFollow2D" parent="SquarePath/path2d" index="0" instance=ExtResource("6_a841m")]
+position = Vector2(-45.1743, 159.683)
+rotation = 0.00433037
+health = 6
 
 [connection signal="startNextWave" from="UI/UI" to="." method="_on_ui_start_next_wave"]
 [connection signal="child_exiting_tree" from="SquarePath/path2d" to="." method="_on_path_2d_child_exiting_tree"]

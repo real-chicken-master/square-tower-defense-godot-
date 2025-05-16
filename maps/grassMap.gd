@@ -39,11 +39,13 @@ func towerPlace(towerType):
 func placeTower(towerType,pos):
 	if(towerType == "discShooter"):
 		var discShooter = discShooter_scene.instantiate() as CharacterBody2D
+		discShooter.connect("discShooterUpgrade",towerUpgrade)
 		discShooter.connect("shootDisc",shoot_disc)
 		discShooter.global_position = pos
 		$towers.add_child(discShooter)
 	if(towerType == "sniper"):
 		var sniper = sniper_scene.instantiate() as CharacterBody2D
+		sniper.connect("sniperUpgrade",towerUpgrade)
 		sniper.global_position = pos
 		$towers.add_child(sniper)
 	if(towerType == "sprayer"):
