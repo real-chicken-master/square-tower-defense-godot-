@@ -10,7 +10,6 @@ var waveInProgress = false
 
 var squaresLeftInWave = 0:
 	set(squaresLeft):
-		print(squaresLeft)
 		squaresLeftInWave = squaresLeft
 		if(squaresLeft == 0):
 			waveInProgress = false

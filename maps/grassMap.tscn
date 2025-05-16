@@ -3,11 +3,11 @@
 [ext_resource type="PackedScene" uid="uid://uqmsffodfali" path="res://maps/mapBase.tscn" id="1_dgd4r"]
 [ext_resource type="Script" path="res://maps/grassMap.gd" id="2_qnl7v"]
 [ext_resource type="PackedScene" uid="uid://bnwvefyvc5koy" path="res://UI/ui.tscn" id="3_7oe5r"]
-[ext_resource type="Texture2D" uid="uid://e1c7q5w4qyjt" path="res://images/brick.png" id="5_h0wfq"]
+[ext_resource type="Texture2D" uid="uid://cxqv8cudtcod0" path="res://images/path.png" id="4_lqn32"]
 [ext_resource type="Texture2D" uid="uid://qnvj5rjakmih" path="res://images/grass.png" id="6_tm8fv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v162i"]
-texture = ExtResource("5_h0wfq")
+texture = ExtResource("4_lqn32")
 texture_region_size = Vector2i(225, 225)
 0:0/0 = 0
 
