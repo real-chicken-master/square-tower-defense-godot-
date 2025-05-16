@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bnwvefyvc5koy"]
+[gd_scene load_steps=8 format=3 uid="uid://bnwvefyvc5koy"]
 
 [ext_resource type="Script" path="res://UI/ui.gd" id="1_palqw"]
 [ext_resource type="Texture2D" uid="uid://dvxdyo2rrwf4m" path="res://images/DiscShooter.png" id="2_hmbaw"]
@@ -6,8 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://ba68w61iocl47" path="res://images/sprayer.png" id="4_ds61g"]
 [ext_resource type="Texture2D" uid="uid://q06m8hn7fdjh" path="res://images/heart.png" id="4_ghevu"]
 [ext_resource type="Texture2D" uid="uid://cq6dsv85bfgwb" path="res://images/$sign.png" id="5_2k8rc"]
+[ext_resource type="LabelSettings" uid="uid://douq65vob2cd7" path="res://misc settings/DefaultLabel.tres" id="7_3k4ka"]
 
 [node name="UI" type="Control"]
+z_index = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -81,14 +83,14 @@ grow_vertical = 2
 
 [node name="Label" type="Label" parent="sidebar (towers)/VBoxContainer(upgrades)"]
 layout_mode = 2
-size_flags_vertical = 2
+size_flags_vertical = 0
 horizontal_alignment = 1
 
 [node name="upgradeBranch1" type="Button" parent="sidebar (towers)/VBoxContainer(upgrades)" groups=["button"]]
 modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 size_flags_vertical = 3
-text = "branch1"
+text = "branch 1"
 text_overrun_behavior = 2
 icon_alignment = 1
 vertical_icon_alignment = 0
@@ -97,7 +99,16 @@ vertical_icon_alignment = 0
 modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 size_flags_vertical = 3
-text = "branch2"
+text = "branch 2"
+clip_text = true
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="upgradeBranch3" type="Button" parent="sidebar (towers)/VBoxContainer(upgrades)" groups=["button"]]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 2
+size_flags_vertical = 3
+text = "branch 3"
 clip_text = true
 icon_alignment = 1
 vertical_icon_alignment = 0
@@ -183,9 +194,62 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="quitButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.005
+anchor_top = 0.01
+anchor_right = 0.061
+anchor_bottom = 0.07
+offset_left = -0.639999
+offset_top = 0.280001
+offset_right = 0.591995
+offset_bottom = -0.0400009
+
+[node name="Label" type="Label" parent="quitButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "quit"
+label_settings = ExtResource("7_3k4ka")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="menuButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.07
+anchor_top = 0.01
+anchor_right = 0.139
+anchor_bottom = 0.07
+offset_left = -0.959999
+offset_top = 0.28
+offset_right = -0.192017
+offset_bottom = -0.0400009
+
+[node name="Label" type="Label" parent="menuButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "menu"
+label_settings = ExtResource("7_3k4ka")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
 [connection signal="button_down" from="sidebar (towers)/VBoxContainer(buttons)/discShooter" to="." method="_on_disc_shooter_button_down"]
 [connection signal="button_down" from="sidebar (towers)/VBoxContainer(buttons)/sniper" to="." method="_on_sniper_button_down"]
 [connection signal="button_down" from="sidebar (towers)/VBoxContainer(buttons)/sprayer" to="." method="_on_sprayer_button_down"]
 [connection signal="button_down" from="sidebar (towers)/VBoxContainer(upgrades)/upgradeBranch1" to="." method="_on_upgrade_branch_1_button_down"]
 [connection signal="button_down" from="sidebar (towers)/VBoxContainer(upgrades)/upgradeBranch2" to="." method="_on_upgrade_branch_2_button_down"]
+[connection signal="button_down" from="sidebar (towers)/VBoxContainer(upgrades)/upgradeBranch3" to="." method="_on_upgrade_branch_3_button_down"]
 [connection signal="button_down" from="sidebar (towers)/start wave" to="." method="_on_start_wave_button_down"]
+[connection signal="button_down" from="quitButton" to="." method="_on_quit_button_button_down"]
+[connection signal="button_down" from="menuButton" to="." method="_on_menu_button_button_down"]

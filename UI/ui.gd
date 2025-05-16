@@ -115,13 +115,13 @@ func _on_upgrade_branch_2_button_down():
 
 func upgradeStop():
 	await get_tree().create_timer(0.01).timeout
-	if(!anybuttonpressed()):
+	if(!anyButtonPressed()):
 		$"sidebar (towers)/VBoxContainer(buttons)".visible = true
 		$"sidebar (towers)/VBoxContainer(upgrades)".visible = false
 		upgradeTowerNode = null
 		upgradeTowerType = null
 
-func anybuttonpressed():
+func anyButtonPressed():
 	var anybuttonpressed = false
 	for button in get_tree().get_nodes_in_group("button"):
 		if(button.button_pressed):
@@ -130,3 +130,15 @@ func anybuttonpressed():
 
 
 
+
+
+func _on_upgrade_branch_3_button_down():
+	pass # Replace with function body.
+
+
+func _on_quit_button_button_down():
+	get_tree().quit()
+
+
+func _on_menu_button_button_down():
+	get_tree().change_scene_to_file("res://UI/title_screen.tscn")

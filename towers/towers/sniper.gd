@@ -14,7 +14,11 @@ var targets = []
 
 var Damage = 3
 
-var upgradeBranch1 = 0
+var upgradeBranch1 = 1
+
+var upgradeBranch2 = 1
+
+var upgradeBranch3 = 1
 
 var attackSpeed = 1:
 	set(attackspeed):
