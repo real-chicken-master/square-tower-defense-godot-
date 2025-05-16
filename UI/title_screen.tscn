@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dpn4y0i6amnga"]
+[gd_scene load_steps=4 format=3 uid="uid://dpn4y0i6amnga"]
 
 [ext_resource type="Script" path="res://UI/title_screen.gd" id="1_f54np"]
+[ext_resource type="Texture2D" uid="uid://dunrpwx3uti8f" path="res://images/titleScreen.png" id="2_iywtm"]
 [ext_resource type="LabelSettings" uid="uid://douq65vob2cd7" path="res://misc settings/DefaultLabel.tres" id="2_nyfy0"]
 
 [node name="title screen" type="Control"]
@@ -11,6 +12,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_f54np")
+
+[node name="TitleScreen" type="Sprite2D" parent="."]
+position = Vector2(864, 486)
+scale = Vector2(2, 2)
+texture = ExtResource("2_iywtm")
 
 [node name="StartButton" type="Button" parent="."]
 layout_mode = 1
