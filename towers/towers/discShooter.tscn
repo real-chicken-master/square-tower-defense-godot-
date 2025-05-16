@@ -41,6 +41,7 @@ scale = Vector2(1.17647, 1.17647)
 [node name="noticeCircle" type="Sprite2D" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0.313726)
+z_index = 1
 position = Vector2(0.348101, -1.15697)
 scale = Vector2(1.47854, 1.47898)
 texture = ExtResource("3_ecgw0")

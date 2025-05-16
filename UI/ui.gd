@@ -114,16 +114,19 @@ func _on_upgrade_branch_2_button_down():
 		updateUpgradeButtons()
 
 func upgradeStop():
-	if(anybuttonpressed()):
+	await get_tree().create_timer(0.01).timeout
+	if(!anybuttonpressed()):
 		$"sidebar (towers)/VBoxContainer(buttons)".visible = true
 		$"sidebar (towers)/VBoxContainer(upgrades)".visible = false
 		upgradeTowerNode = null
 		upgradeTowerType = null
 
 func anybuttonpressed():
+	var anybuttonpressed = false
 	for button in get_tree().get_nodes_in_group("button"):
-		pass
-	
+		if(button.button_pressed):
+			anybuttonpressed = true
+	return anybuttonpressed
 
 
 

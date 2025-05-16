@@ -66,7 +66,5 @@ func _input(event):
 		if(event.button_index == MOUSE_BUTTON_LEFT):
 			if($Sniper.is_pixel_opaque(get_local_mouse_position())):
 				sniperUpgrade.emit(upgradeBranch1,"sniper",self)
-				$noticeCircle.visible = true
 			else:
-				$noticeCircle.visible = false
 				upgradeStop.emit()

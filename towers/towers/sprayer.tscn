@@ -46,6 +46,7 @@ wait_time = 0.7
 [node name="noticeCircle" type="Sprite2D" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0.313726)
+z_index = 1
 position = Vector2(0.00230294, 0.0109633)
 scale = Vector2(0.591838, 0.591899)
 texture = ExtResource("3_ohc1u")
