@@ -96,6 +96,7 @@ modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 size_flags_vertical = 3
 text = "branch1"
+text_overrun_behavior = 2
 icon_alignment = 1
 vertical_icon_alignment = 0
 
@@ -104,6 +105,7 @@ modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 size_flags_vertical = 3
 text = "branch2"
+clip_text = true
 icon_alignment = 1
 vertical_icon_alignment = 0
 

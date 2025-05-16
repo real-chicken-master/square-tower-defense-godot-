@@ -90,17 +90,22 @@ func _on_start_wave_button_down():
 		startNextWave.emit(wave)
 
 func towerUpgrade(_upgradeBranch1,tower,towerNode):
-	$"sidebar (towers)/VBoxContainer(buttons)".visible = false
-	$"sidebar (towers)/VBoxContainer(upgrades)".visible = true
 	upgradeTowerType = tower
 	upgradeTowerNode = towerNode
+	updateUpgradeButtons()
+	$"sidebar (towers)/VBoxContainer(buttons)".visible = false
+	$"sidebar (towers)/VBoxContainer(upgrades)".visible = true
 
 func updateUpgradeButtons():
 		$"sidebar (towers)/VBoxContainer(upgrades)/Label".text = upgradeTowerType + " upgrades"
-		$"sidebar (towers)/VBoxContainer(upgrades)/upgradeBranch1".text = "test"
+		$"sidebar (towers)/VBoxContainer(upgrades)/upgradeBranch1".text = "increase attack speed by 10% 
+		from " + str(snapped(upgradeTowerNode.attackSpeed, 0.01))
+		$"sidebar (towers)/VBoxContainer(upgrades)/upgradeBranch2".text = "increase attack damage by 10%
+		 from " + str(snapped(upgradeTowerNode.Damage , 0.01))
 
 func _on_upgrade_branch_1_button_down():
 	upgradeTowerNode.attackSpeed *= 1.1
+	updateUpgradeButtons()
 
 
 func _on_exit_button_down():
@@ -112,3 +117,4 @@ func _on_exit_button_down():
 
 func _on_upgrade_branch_2_button_down():
 		upgradeTowerNode.Damage *= 1.1
+		updateUpgradeButtons()
