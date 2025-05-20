@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cemlr2vbce2kw"]
+[gd_scene load_steps=4 format=3 uid="uid://cemlr2vbce2kw"]
 
 [ext_resource type="PackedScene" uid="uid://uqmsffodfali" path="res://maps/mapBase.tscn" id="1_yxmnx"]
 [ext_resource type="Script" path="res://maps/Map1.gd" id="2_47jv7"]
-[ext_resource type="PackedScene" uid="uid://deyjucdki6ap2" path="res://squares (enemies)/squareBase.tscn" id="3_a7ud4"]
 
 [sub_resource type="Curve2D" id="Curve2D_0f2c1"]
 _data = {
@@ -26,10 +25,5 @@ polygon = PackedVector2Array(-3200.4, -1617.22, 668.229, -1177.2, 311.016, 97.18
 position = Vector2(320, 97)
 scale = Vector2(1.50197, 1.49406)
 curve = SubResource("Curve2D_0f2c1")
-
-[node name="PathFollow2D" parent="SquarePath/SquarePath" index="0" instance=ExtResource("3_a7ud4")]
-position = Vector2(-45.1743, 159.683)
-rotation = 0.00433037
-health = 49
 
 [connection signal="child_exiting_tree" from="SquarePath/SquarePath" to="." method="_on_path_2d_child_exiting_tree"]

@@ -4,7 +4,7 @@ var health = 100
 
 var money = 100
 
-var wave = 0
+var wave = 5
 
 var waveInProgress = false
 

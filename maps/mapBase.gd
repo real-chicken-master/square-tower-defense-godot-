@@ -85,7 +85,7 @@ func createSquare(type):
 		var square = Square_scene.instantiate() as PathFollow2D
 		square.health = 9
 		$SquarePath/SquarePath.add_child(square)
-	if(type == "purple"):
+	if(type == "lightBlue"):
 		var square = Square_scene.instantiate() as PathFollow2D
 		square.health = 20
 		$SquarePath/SquarePath.add_child(square)
@@ -139,6 +139,29 @@ func wave4():
 		createSquare("green")
 		await get_tree().create_timer(0.3).timeout
 
+func wave5():
+	Globals.squaresLeftInWave += 15
+	for num in 10:
+		createSquare("green")
+		await get_tree().create_timer(0.3).timeout
+	for num in 5:
+		createSquare("pink")
+		await get_tree().create_timer(0.2).timeout
+
+func wave6():
+	Globals.squaresLeftInWave += 12
+	for num in 5:
+		createSquare("green")
+		await get_tree().create_timer(0.2).timeout
+	for num in 5:
+		createSquare("pink")
+		await get_tree().create_timer(0.2).timeout
+	for num in 2:
+		createSquare("lightBlue")
+		await get_tree().create_timer(0.2).timeout
+
+
+
 
 func startNextWave(waveNumber):
 	if(waveNumber == 1):
@@ -153,6 +176,12 @@ func startNextWave(waveNumber):
 	if(waveNumber == 4):
 		Globals.waveInProgress = true
 		wave4()
+	if(waveNumber == 5):
+		Globals.waveInProgress = true
+		wave5()
+	if(waveNumber == 6):
+		Globals.waveInProgress = true
+		wave6()
 	if(!Globals.waveInProgress):
 		Globals.wave = 0
 

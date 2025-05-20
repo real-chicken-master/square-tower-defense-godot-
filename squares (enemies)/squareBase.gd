@@ -48,20 +48,22 @@ func updateSquareColor():
 		$CharacterBody2D.modulate = Color(0,255,0,255)
 		speed = 500
 	if(currentHealth >= 7 && currentHealth <= 9):
+		print($CharacterBody2D.modulate)
 		$CharacterBody2D.scale = Vector2(1,1)
 		$CharacterBody2D.modulate = Color(255,0,255,255)
 		speed = 500
 	if(currentHealth >= 10 && currentHealth <= 20):
+		print($CharacterBody2D.modulate)
 		$CharacterBody2D.scale = Vector2(1,1)
-		$CharacterBody2D.modulate = Color(80,0,125,255)
-		speed = 500
+		$CharacterBody2D.modulate = Color(0,255,255,255)
+		speed = 300
 	if(currentHealth >= 21 && currentHealth <= 30):
 		$CharacterBody2D.scale = Vector2(1,1)
 		$CharacterBody2D.modulate = Color(200,100,0,255)
 		speed = 500
 	if(currentHealth >= 31 && currentHealth <= 50):
 		$CharacterBody2D.scale = Vector2(1.8,1)
-		$CharacterBody2D.modulate = Color()
+		$CharacterBody2D.modulate = Color(0,0,0)
 		speed = 300
 
 
