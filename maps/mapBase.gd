@@ -81,6 +81,22 @@ func createSquare(type):
 		var square = Square_scene.instantiate() as PathFollow2D
 		square.health = 6
 		$SquarePath/SquarePath.add_child(square)
+	if(type == "pink"):
+		var square = Square_scene.instantiate() as PathFollow2D
+		square.health = 9
+		$SquarePath/SquarePath.add_child(square)
+	if(type == "purple"):
+		var square = Square_scene.instantiate() as PathFollow2D
+		square.health = 20
+		$SquarePath/SquarePath.add_child(square)
+	if(type == "orange"):
+		var square = Square_scene.instantiate() as PathFollow2D
+		square.health = 30
+		$SquarePath/SquarePath.add_child(square)
+	if(type == "black"):
+		var square = Square_scene.instantiate() as PathFollow2D
+		square.health = 50
+		$SquarePath/SquarePath.add_child(square)
 
 func shoot_disc(pos, direction,damage):
 	var disc = disc_scene.instantiate() as Area2D
@@ -122,6 +138,7 @@ func wave4():
 	for num in 10:
 		createSquare("green")
 		await get_tree().create_timer(0.3).timeout
+
 
 func startNextWave(waveNumber):
 	if(waveNumber == 1):

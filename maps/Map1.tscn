@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cemlr2vbce2kw"]
+[gd_scene load_steps=5 format=3 uid="uid://cemlr2vbce2kw"]
 
 [ext_resource type="PackedScene" uid="uid://uqmsffodfali" path="res://maps/mapBase.tscn" id="1_yxmnx"]
 [ext_resource type="Script" path="res://maps/Map1.gd" id="2_47jv7"]
+[ext_resource type="PackedScene" uid="uid://deyjucdki6ap2" path="res://squares (enemies)/squareBase.tscn" id="3_a7ud4"]
 
 [sub_resource type="Curve2D" id="Curve2D_0f2c1"]
 _data = {
@@ -22,9 +23,13 @@ visible = false
 polygon = PackedVector2Array(-3200.4, -1617.22, 668.229, -1177.2, 311.016, 97.1875, 311.023, 291.414, 816.242, 291.391, 816.25, 680.203, 512.508, 680.219, 512.484, 582.992, 411.231, 583.091, 411.258, 777.398, 917.508, 777.398, 917.508, 194.195, 1626.25, 194.176, 1626.26, 583.016, 1321.94, 583.015, 1322.55, 485.703, 1220.89, 485.914, 1224.1, 676.001, 1626.26, 680.203, 1626.25, 971.789, 1727.51, 971.805, 1726.96, 101, 311.023, 97.1875, 668.309, -1177, 4490.21, -1477.77, 4832.86, 2992.92, 812.516, 3007.73, 1525.04, 971.781, 1524.95, 777.344, 1119.93, 777.829, 1120.05, 388.404, 1423.81, 388.438, 1423.6, 485.669, 1524.97, 485.792, 1524.88, 291.424, 1018.74, 291.391, 1018.74, 874.602, 311.039, 874.609, 311.031, 971.82, 1525.02, 971.797, 812.504, 3007.73, 812.504, 3007.73, -4000.57, 2926.32, -2800.67, 225.143, 311.047, 485.805, 613.742, 485.813, 613.75, 583, 715.016, 582.977, 715.023, 388.602, 312.25, 389, 311.047, 485.789, -2800.66, 225.125)
 
 [node name="SquarePath" type="Path2D" parent="SquarePath" index="0"]
-visible = false
 position = Vector2(320, 97)
 scale = Vector2(1.50197, 1.49406)
 curve = SubResource("Curve2D_0f2c1")
+
+[node name="PathFollow2D" parent="SquarePath/SquarePath" index="0" instance=ExtResource("3_a7ud4")]
+position = Vector2(-45.1743, 159.683)
+rotation = 0.00433037
+health = 49
 
 [connection signal="child_exiting_tree" from="SquarePath/SquarePath" to="." method="_on_path_2d_child_exiting_tree"]
