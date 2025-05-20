@@ -227,6 +227,9 @@ func startNextWave(waveNumber):
 	if(waveNumber == 9):
 		Globals.waveInProgress = true
 		wave9()
+	if(waveNumber == 10):
+		Globals.waveInProgress = true
+		wave10()
 	if(!Globals.waveInProgress):
 		Globals.wave = 0
 
