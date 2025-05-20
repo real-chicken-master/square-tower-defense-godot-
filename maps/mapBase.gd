@@ -1,4 +1,7 @@
-extends Node2D
+extends Node
+
+class_name levelParent
+
 
 var disc_scene = preload("res://towers/projectiles/disc.tscn")
 
@@ -20,6 +23,7 @@ func connectSignals():
 	for Squares in get_tree().get_nodes_in_group("squares"):
 		Squares.connect("createSquare",createSquare)
 	$UI/UI.connect("towerplace",towerPlace)
+	$UI/UI.connect("startNextWave" ,startNextWave)
 
 func towerPlace(towerType):
 	if(towerType == "disc Shooter"):
@@ -64,19 +68,19 @@ func createSquare(type):
 	if(type == "red"):
 		var square = Square_scene.instantiate() as PathFollow2D
 		square.health = 1
-		$SquarePath/path2d.add_child(square)
+		$SquarePath/SquarePath.add_child(square)
 	if(type == "blue"):
 		var square = Square_scene.instantiate() as PathFollow2D
 		square.health = 2
-		$SquarePath/path2d.add_child(square)
+		$SquarePath/SquarePath.add_child(square)
 	if(type == "yellow"):
 		var square = Square_scene.instantiate() as PathFollow2D
 		square.health = 3
-		$SquarePath/path2d.add_child(square)
+		$SquarePath/SquarePath.add_child(square)
 	if(type == "green"):
 		var square = Square_scene.instantiate() as PathFollow2D
 		square.health = 6
-		$SquarePath/path2d.add_child(square)
+		$SquarePath/SquarePath.add_child(square)
 
 func shoot_disc(pos, direction,damage):
 	var disc = disc_scene.instantiate() as Area2D
@@ -119,7 +123,7 @@ func wave4():
 		createSquare("green")
 		await get_tree().create_timer(0.3).timeout
 
-func _on_ui_start_next_wave(waveNumber):
+func startNextWave(waveNumber):
 	if(waveNumber == 1):
 		Globals.waveInProgress = true
 		wave1()
@@ -141,4 +145,5 @@ func towerUpgrade(upgradeBranch1,tower,towerNode):
 
 func _on_character_body_2d_shoot_disc(pos, direction, damage):
 	shoot_disc(pos, direction, damage)
+
 

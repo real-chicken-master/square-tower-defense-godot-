@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dpn4y0i6amnga"]
+[gd_scene load_steps=6 format=3 uid="uid://dpn4y0i6amnga"]
 
 [ext_resource type="Script" path="res://UI/title_screen.gd" id="1_f54np"]
 [ext_resource type="Texture2D" uid="uid://dunrpwx3uti8f" path="res://images/titleScreen.png" id="2_iywtm"]
 [ext_resource type="LabelSettings" uid="uid://douq65vob2cd7" path="res://misc settings/DefaultLabel.tres" id="2_nyfy0"]
+[ext_resource type="Texture2D" uid="uid://dn0nxapqp6hcr" path="res://images/map1Image.png" id="4_vaiko"]
+[ext_resource type="Texture2D" uid="uid://b8nffunstkfa4" path="res://images/map2Image.png" id="5_volin"]
 
 [node name="title screen" type="Control"]
 layout_mode = 3
@@ -18,21 +20,37 @@ position = Vector2(864, 486)
 scale = Vector2(2, 2)
 texture = ExtResource("2_iywtm")
 
-[node name="StartButton" type="Button" parent="."]
+[node name="TitleScreenSmall" type="Sprite2D" parent="TitleScreen"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_iywtm")
+
+[node name="TitleScreenExtraSmall" type="Sprite2D" parent="TitleScreen/TitleScreenSmall"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_iywtm")
+
+[node name="TitleScreenExtremlySmall" type="Sprite2D" parent="TitleScreen/TitleScreenSmall/TitleScreenExtraSmall"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_iywtm")
+
+[node name="mainButtons" type="Control" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.4
-anchor_top = 0.4
-anchor_right = 0.6
-anchor_bottom = 0.45
-offset_left = -4.0
-offset_top = -4.0
-offset_right = 4.0
-offset_bottom = 4.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="StartButton"]
+[node name="StartButton" type="Button" parent="mainButtons"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4
+anchor_top = 0.5
+anchor_right = 0.6
+anchor_bottom = 0.55
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="mainButtons/StartButton"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -45,21 +63,17 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="Button" type="Button" parent="."]
+[node name="ExitButton" type="Button" parent="mainButtons"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.4
-anchor_top = 0.5
+anchor_top = 0.65
 anchor_right = 0.6
-anchor_bottom = 0.55
-offset_left = -4.0
-offset_top = -4.0
-offset_right = 4.0
-offset_bottom = 4.0
+anchor_bottom = 0.7
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="Button"]
+[node name="Label" type="Label" parent="mainButtons/ExitButton"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -72,5 +86,95 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[connection signal="button_down" from="StartButton" to="." method="_on_start_button_button_down"]
-[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
+[node name="levelButtons" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="map1Button" type="Button" parent="levelButtons"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.35
+anchor_top = 0.05
+anchor_right = 0.65
+anchor_bottom = 0.38
+grow_horizontal = 2
+grow_vertical = 2
+icon = ExtResource("4_vaiko")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Label" type="Label" parent="levelButtons/map1Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "map 1
+"
+label_settings = ExtResource("2_nyfy0")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="map2Button" type="Button" parent="levelButtons"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.35
+anchor_top = 0.45
+anchor_right = 0.65
+anchor_bottom = 0.78
+grow_horizontal = 2
+grow_vertical = 2
+icon = ExtResource("5_volin")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Label" type="Label" parent="levelButtons/map2Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "map 2
+"
+label_settings = ExtResource("2_nyfy0")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="backButton" type="Button" parent="levelButtons"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4
+anchor_top = 0.85
+anchor_right = 0.6
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="levelButtons/backButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "back
+"
+label_settings = ExtResource("2_nyfy0")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[connection signal="button_down" from="mainButtons/StartButton" to="." method="_on_start_button_button_down"]
+[connection signal="button_down" from="mainButtons/ExitButton" to="." method="_on_exit_button_button_down"]
+[connection signal="button_down" from="levelButtons/map1Button" to="." method="_on_map_1_button_button_down"]
+[connection signal="button_down" from="levelButtons/map2Button" to="." method="_on_map_2_button_button_down"]
+[connection signal="button_down" from="levelButtons/backButton" to="." method="_on_back_button_button_down"]

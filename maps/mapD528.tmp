@@ -42,8 +42,4 @@ collision_mask = 0
 
 [node name="towers" type="Node2D" parent="."]
 
-[node name="projectiles" type="Node2D" parent="towers"]
-
-[node name="towerPlaceIcons" type="Node2D" parent="towers"]
-
 [node name="SquarePath" type="Node2D" parent="."]
