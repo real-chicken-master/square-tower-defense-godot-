@@ -95,7 +95,7 @@ func createSquare(type):
 		$SquarePath/SquarePath.add_child(square)
 	if(type == "black"):
 		var square = Square_scene.instantiate() as PathFollow2D
-		square.health = 50
+		square.health = 100
 		$SquarePath/SquarePath.add_child(square)
 
 func shoot_disc(pos, direction,damage):
@@ -182,6 +182,22 @@ func wave8():
 		createSquare("orange")
 		await get_tree().create_timer(0.4).timeout
 
+func wave9():
+	Globals.squaresLeftInWave += 30
+	for num in 10:
+		createSquare("pink")
+		await get_tree().create_timer(0.2).timeout
+	for num in 10:
+		createSquare("lightBlue")
+		await get_tree().create_timer(0.2).timeout
+	for num in 10:
+		createSquare("orange")
+		await get_tree().create_timer(0.3).timeout
+
+func wave10():
+	Globals.squaresLeftInWave += 1
+	createSquare("black")
+
 
 func startNextWave(waveNumber):
 	if(waveNumber == 1):
@@ -205,6 +221,12 @@ func startNextWave(waveNumber):
 	if(waveNumber == 7):
 		Globals.waveInProgress = true
 		wave7()
+	if(waveNumber == 8):
+		Globals.waveInProgress = true
+		wave8()
+	if(waveNumber == 9):
+		Globals.waveInProgress = true
+		wave9()
 	if(!Globals.waveInProgress):
 		Globals.wave = 0
 
