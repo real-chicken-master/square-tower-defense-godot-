@@ -160,7 +160,27 @@ func wave6():
 		createSquare("lightBlue")
 		await get_tree().create_timer(0.2).timeout
 
+func wave7():
+	Globals.squaresLeftInWave += 150
+	for num in 100:
+		createSquare("red")
+		await get_tree().create_timer(0.02).timeout
+	await get_tree().create_timer(0.3).timeout
+	for num in 50:
+		createSquare("blue")
+		await get_tree().create_timer(0.02).timeout
 
+func wave8():
+	Globals.squaresLeftInWave += 15
+	for num in 5:
+		createSquare("pink")
+		await get_tree().create_timer(0.2).timeout
+	for num in 5:
+		createSquare("lightBlue")
+		await get_tree().create_timer(0.2).timeout
+	for num in 5:
+		createSquare("orange")
+		await get_tree().create_timer(0.4).timeout
 
 
 func startNextWave(waveNumber):
@@ -182,6 +202,9 @@ func startNextWave(waveNumber):
 	if(waveNumber == 6):
 		Globals.waveInProgress = true
 		wave6()
+	if(waveNumber == 7):
+		Globals.waveInProgress = true
+		wave7()
 	if(!Globals.waveInProgress):
 		Globals.wave = 0
 
