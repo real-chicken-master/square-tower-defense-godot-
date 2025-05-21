@@ -130,12 +130,6 @@ func anyButtonPressed():
 
 
 
-
-
-func _on_upgrade_branch_3_button_down():
-	pass # Replace with function body.
-
-
 func _on_quit_button_button_down():
 	get_tree().quit()
 

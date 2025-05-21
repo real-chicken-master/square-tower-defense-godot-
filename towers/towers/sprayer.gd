@@ -4,8 +4,6 @@ signal shootDisc(pos,direction,damage)
 
 signal sprayerUpgrade(int,String,Self)
 
-signal upgradeStop()
-
 var upgradeBranch1 = 1
 
 var upgradeBranch2 = 1
@@ -68,15 +66,12 @@ func _on_notice_area_body_exited(body):
 func _on_shoot_delay_timeout():
 	canShoot = true
 
-func _input(event):
-	if(event is InputEventMouseButton and event.pressed):
-		if(event.button_index == MOUSE_BUTTON_LEFT):
-			if($Sprayer.is_pixel_opaque(get_local_mouse_position())):
-				sprayerUpgrade.emit(upgradeBranch1,"sprayer",self)
-				$noticeCircle.visible = true
-			else:
-				$noticeCircle.visible = false
-				upgradeStop.emit()
-
-
+func clickCheck():
+	if($Sprayer.is_pixel_opaque(get_local_mouse_position())):
+		sprayerUpgrade.emit(upgradeBranch1,"discShooter",self)
+		$noticeCircle.visible = true
+		return true
+	else:
+		$noticeCircle.visible = false
+		return false
 

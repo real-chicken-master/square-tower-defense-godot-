@@ -2,8 +2,6 @@ extends CharacterBody2D
 
 signal sniperUpgrade(int,String,Self)
 
-signal upgradeStop()
-
 var notice = false
 
 var target = null
@@ -65,10 +63,11 @@ func _on_notice_area_body_exited(body):
 func _on_shoot_delay_timeout():
 	canShoot = true
 
-func _input(event):
-	if(event is InputEventMouseButton and event.pressed):
-		if(event.button_index == MOUSE_BUTTON_LEFT):
-			if($Sniper.is_pixel_opaque(get_local_mouse_position())):
-				sniperUpgrade.emit(upgradeBranch1,"sniper",self)
-			else:
-				upgradeStop.emit()
+func clickCheck():
+	if($Sniper.is_pixel_opaque(get_local_mouse_position())):
+		sniperUpgrade.emit(upgradeBranch1,"discShooter",self)
+		$noticeCircle.visible = true
+		return true
+	else:
+		$noticeCircle.visible = false
+		return false

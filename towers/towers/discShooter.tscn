@@ -29,7 +29,7 @@ shape = SubResource("CircleShape2D_74q31")
 [node name="shootDelay" type="Timer" parent="."]
 wait_time = 0.3
 
-[node name="DiscShooter" type="Sprite2D" parent="."]
+[node name="DiscShooter" type="Sprite2D" parent="." groups=["towerImage"]]
 position = Vector2(7.10543e-15, -8.75001)
 scale = Vector2(0.85, 0.8375)
 texture = ExtResource("2_0a7ko")

@@ -25,7 +25,7 @@ shape = SubResource("CircleShape2D_7ajpk")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_5jt0h")
 
-[node name="Sprayer" type="Sprite2D" parent="."]
+[node name="Sprayer" type="Sprite2D" parent="." groups=["towerImage"]]
 texture = ExtResource("1_b3l7h")
 
 [node name="Marker2DTop" type="Marker2D" parent="Sprayer"]

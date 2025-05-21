@@ -104,15 +104,6 @@ clip_text = true
 icon_alignment = 1
 vertical_icon_alignment = 0
 
-[node name="upgradeBranch3" type="Button" parent="sidebar (towers)/VBoxContainer(upgrades)" groups=["button"]]
-modulate = Color(1, 0, 0, 1)
-layout_mode = 2
-size_flags_vertical = 3
-text = "branch 3"
-clip_text = true
-icon_alignment = 1
-vertical_icon_alignment = 0
-
 [node name="start wave" type="Button" parent="sidebar (towers)" groups=["button"]]
 layout_mode = 1
 anchors_preset = 7
@@ -249,7 +240,6 @@ uppercase = true
 [connection signal="button_down" from="sidebar (towers)/VBoxContainer(buttons)/sprayer" to="." method="_on_sprayer_button_down"]
 [connection signal="button_down" from="sidebar (towers)/VBoxContainer(upgrades)/upgradeBranch1" to="." method="_on_upgrade_branch_1_button_down"]
 [connection signal="button_down" from="sidebar (towers)/VBoxContainer(upgrades)/upgradeBranch2" to="." method="_on_upgrade_branch_2_button_down"]
-[connection signal="button_down" from="sidebar (towers)/VBoxContainer(upgrades)/upgradeBranch3" to="." method="_on_upgrade_branch_3_button_down"]
 [connection signal="button_down" from="sidebar (towers)/start wave" to="." method="_on_start_wave_button_down"]
 [connection signal="button_down" from="quitButton" to="." method="_on_quit_button_button_down"]
 [connection signal="button_down" from="menuButton" to="." method="_on_menu_button_button_down"]

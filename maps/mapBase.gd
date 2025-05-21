@@ -16,6 +16,9 @@ var sniper_scene = preload("res://towers/towers/sniper.tscn")
 var sprayerPlace_scene = preload("res://towers/tower place/sprayerPlace.tscn")
 var sprayer_scene = preload("res://towers/towers/sprayer.tscn")
 
+var mouseX
+var mouseY
+
 func _ready():
 	connectSignals()
 
@@ -47,20 +50,17 @@ func placeTower(towerType,pos):
 		var discShooter = discShooter_scene.instantiate() as CharacterBody2D
 		discShooter.connect("discShooterUpgrade",towerUpgrade)
 		discShooter.connect("shootDisc",shoot_disc)
-		discShooter.connect("upgradeStop",upgradeStop)
 		discShooter.global_position = pos
 		$towers.add_child(discShooter)
 	if(towerType == "sniper"):
 		var sniper = sniper_scene.instantiate() as CharacterBody2D
 		sniper.connect("sniperUpgrade",towerUpgrade)
-		sniper.connect("upgradeStop",upgradeStop)
 		sniper.global_position = pos
 		$towers.add_child(sniper)
 	if(towerType == "sprayer"):
 		var sprayer = sprayer_scene.instantiate() as CharacterBody2D
 		sprayer.connect("shootDisc",shoot_disc)
 		sprayer.connect("sprayerUpgrade",towerUpgrade)
-		sprayer.connect("upgradeStop",upgradeStop)
 		sprayer.global_position = pos
 		$towers.add_child(sprayer)
 
@@ -240,4 +240,12 @@ func towerUpgrade(upgradeBranch1,tower,towerNode):
 func _on_character_body_2d_shoot_disc(pos, direction, damage):
 	shoot_disc(pos, direction, damage)
 
-
+func _input(event):
+	if(event is InputEventMouseButton and event.pressed):
+		if(event.button_index == MOUSE_BUTTON_LEFT):
+			var tempBoolean = true
+			for  towerImages in get_tree().get_nodes_in_group("towerImage"):
+				if(towerImages.get_parent().clickCheck()):
+					tempBoolean = false
+			if(tempBoolean):
+				upgradeStop()
