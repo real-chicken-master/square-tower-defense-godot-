@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 signal shootDisc(pos,direction,damage)
 
-signal discShooterUpgrade(int,String,Self)
+signal discShooterUpgrade(branch1,branch2,branch3,String,Self)
 
 var notice = false
 
@@ -68,7 +68,7 @@ func _on_shoot_delay_timeout():
 
 func clickCheck():
 	if($DiscShooter.is_pixel_opaque(get_local_mouse_position())):
-		discShooterUpgrade.emit(upgradeBranch1,"discShooter",self)
+		discShooterUpgrade.emit(upgradeBranch1,upgradeBranch2,upgradeBranch3,"discShooter",self)
 		$noticeCircle.visible = true
 		return true
 	else:

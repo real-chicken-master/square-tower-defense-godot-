@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-signal sniperUpgrade(int,String,Self)
+signal sniperUpgrade(branch1,branch2,branch3,String,Self)
 
 var notice = false
 
@@ -65,7 +65,7 @@ func _on_shoot_delay_timeout():
 
 func clickCheck():
 	if($Sniper.is_pixel_opaque(get_local_mouse_position())):
-		sniperUpgrade.emit(upgradeBranch1,"discShooter",self)
+		sniperUpgrade.emit(upgradeBranch1,upgradeBranch2,upgradeBranch3,"discShooter",self)
 		$noticeCircle.visible = true
 		return true
 	else:

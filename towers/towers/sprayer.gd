@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 signal shootDisc(pos,direction,damage)
 
-signal sprayerUpgrade(int,String,Self)
+signal sprayerUpgrade(branch1,branch2,branch3,String,Self)
 
 var upgradeBranch1 = 1
 
@@ -68,7 +68,7 @@ func _on_shoot_delay_timeout():
 
 func clickCheck():
 	if($Sprayer.is_pixel_opaque(get_local_mouse_position())):
-		sprayerUpgrade.emit(upgradeBranch1,"discShooter",self)
+		sprayerUpgrade.emit(upgradeBranch1,upgradeBranch2,upgradeBranch3,"discShooter",self)
 		$noticeCircle.visible = true
 		return true
 	else:

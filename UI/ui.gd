@@ -28,6 +28,12 @@ var upgradeTowerType
 
 var upgradeTowerNode
 
+var upgradeBranch1PriceMultiplyer = 1
+
+var upgradeBranch2PriceMultiplyer = 1
+
+var upgradeBranch3PriceMultiplyer = 1
+
 func _ready():
 	$"sidebar (towers)/VBoxContainer(buttons)/discShooter".text = "$"+str(discShooterPrice)
 	$"sidebar (towers)/VBoxContainer(buttons)/sniper".text = "$"+str(sniperPrice)
@@ -90,9 +96,12 @@ func _on_start_wave_button_down():
 		wave = Globals.wave
 		startNextWave.emit(wave)
 
-func towerUpgrade(_upgradeBranch1,tower,towerNode):
+func towerUpgrade(upgradeBranch1,upgradeBranch2,upgradeBranch3,tower,towerNode):
 	upgradeTowerType = tower
 	upgradeTowerNode = towerNode
+	upgradeBranch1PriceMultiplyer = upgradeBranch1
+	upgradeBranch2PriceMultiplyer = upgradeBranch2
+	upgradeBranch3PriceMultiplyer = upgradeBranch3
 	updateUpgradeButtons()
 	$"sidebar (towers)/VBoxContainer(buttons)".visible = false
 	$"sidebar (towers)/VBoxContainer(upgrades)".visible = true
@@ -106,6 +115,7 @@ func updateUpgradeButtons():
 
 func _on_upgrade_branch_1_button_down():
 	upgradeTowerNode.attackSpeed *= 1.1
+	upgradeTowerNode.upgradeBranch1 += 1
 	updateUpgradeButtons()
 
 

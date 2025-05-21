@@ -194,7 +194,6 @@ func wave9():
 		await get_tree().create_timer(0.3).timeout
 
 func wave10():
-	print("test")
 	Globals.squaresLeftInWave += 22
 	for num in 2:
 		for num2 in 10:
