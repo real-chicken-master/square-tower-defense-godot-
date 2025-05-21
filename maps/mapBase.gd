@@ -2,7 +2,6 @@ extends Node
 
 class_name levelParent
 
-
 var disc_scene = preload("res://towers/projectiles/disc.tscn")
 
 var Square_scene = preload("res://squares (enemies)/squareBase.tscn")
@@ -16,8 +15,8 @@ var sniper_scene = preload("res://towers/towers/sniper.tscn")
 var sprayerPlace_scene = preload("res://towers/tower place/sprayerPlace.tscn")
 var sprayer_scene = preload("res://towers/towers/sprayer.tscn")
 
-var mouseX
-var mouseY
+var waveinfiniteMultiplyer = 1
+
 
 func _ready():
 	connectSignals()
@@ -195,9 +194,19 @@ func wave9():
 		await get_tree().create_timer(0.3).timeout
 
 func wave10():
-	Globals.squaresLeftInWave += 1
-	createSquare("black")
+	print("test")
+	Globals.squaresLeftInWave += 22
+	for num in 2:
+		for num2 in 10:
+			createSquare("red")
+			await get_tree().create_timer(0.01).timeout
+		createSquare("black")
+		await get_tree().create_timer(0.5).timeout
 
+func waveinfinte():
+	for num in 2 ** waveinfiniteMultiplyer:
+		await wave10()
+	waveinfiniteMultiplyer += 1
 
 func startNextWave(waveNumber):
 	if(waveNumber == 1):
@@ -230,8 +239,9 @@ func startNextWave(waveNumber):
 	if(waveNumber == 10):
 		Globals.waveInProgress = true
 		wave10()
-	if(!Globals.waveInProgress):
-		Globals.wave = 0
+	if(waveNumber > 10):
+		waveinfinte()
+	
 
 func towerUpgrade(upgradeBranch1,tower,towerNode):
 	$UI/UI.towerUpgrade(upgradeBranch1,tower,towerNode)
