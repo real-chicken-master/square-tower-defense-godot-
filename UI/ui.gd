@@ -189,5 +189,4 @@ func _on_button_button_down():
 	if(speed == 2):
 		Globals.speed = 1
 	Engine.time_scale = Globals.speed
-	print(Engine.time_scale)
 	$"sidebar (towers)/HBoxContainer/speedButton/Label".text = "x" + str(round(Engine.time_scale))

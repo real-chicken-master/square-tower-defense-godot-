@@ -25,10 +25,12 @@ func hideMaps():
 	$levelButtons.visible = false
 
 func _on_map_1_button_button_down():
+	Globals.levelpath = "res://maps/Map1.tscn"
 	get_tree().change_scene_to_file("res://maps/Map1.tscn")
 
 
 func _on_map_2_button_button_down():
+	Globals.levelpath = "res://maps/Map2.tscn"
 	get_tree().change_scene_to_file("res://maps/Map2.tscn")
 
 
