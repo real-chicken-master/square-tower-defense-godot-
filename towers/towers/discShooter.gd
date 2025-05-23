@@ -20,10 +20,12 @@ var upgradeBranch2 = 1
 
 var upgradeBranch3 = 1
 
+@export var baseAttackDelay = 0.3
+
 var attackSpeed = 1:
 	set(attackspeed):
 		attackSpeed = attackspeed
-		$shootDelay.wait_time /= attackSpeed
+		$shootDelay.wait_time = (baseAttackDelay / attackSpeed)
 
 func _process(_delta):
 	getTarget()

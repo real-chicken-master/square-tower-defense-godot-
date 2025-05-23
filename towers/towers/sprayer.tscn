@@ -41,7 +41,7 @@ position = Vector2(76.5105, -0.433266)
 position = Vector2(-0.376774, 77.2285)
 
 [node name="shootDelay" type="Timer" parent="."]
-wait_time = 0.7
+wait_time = 0.65
 
 [node name="noticeCircle" type="Sprite2D" parent="."]
 visible = false

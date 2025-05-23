@@ -24,15 +24,24 @@ var wave
 
 @onready var moneyLabel = $"topbar (Stats)/HBoxContainer/$image/money"
 
+var upgradeOpen = false
+
 var upgradeTowerType
 
 var upgradeTowerNode
 
 var upgradeBranch1PriceMultiplyer = 1
+var upgradeBranch1BasePrice = 30
+var upgradeBranch1Price = upgradeBranch1BasePrice * upgradeBranch1PriceMultiplyer
 
 var upgradeBranch2PriceMultiplyer = 1
+var upgradeBranch2BasePrice = 40
+var upgradeBranch2Price = upgradeBranch2BasePrice * upgradeBranch2PriceMultiplyer
 
 var upgradeBranch3PriceMultiplyer = 1
+var upgradeBranch3BasePrice = 50
+var upgradeBranch3Price = upgradeBranch3BasePrice * upgradeBranch3PriceMultiplyer
+
 
 func _ready():
 	$"sidebar (towers)/VBoxContainer(buttons)/discShooter".text = "$"+str(discShooterPrice)
@@ -62,13 +71,15 @@ func _on_sprayer_button_down():
 			towerplace.emit(towerType)
 
 func _process(_delta):
+	updateStats()
+	updateTowerButtons()
+	if(upgradeOpen):
+		updateUpgradeButtons()
+
+func updateStats():
 	health = Globals.health
 	money = Globals.money
 	wave = Globals.wave
-	updateStats()
-	updateTowerButtons()
-
-func updateStats():
 	healthLabel.text = str(health)
 	moneyLabel.text = str(money)
 	waveLabel.text = "wave
@@ -97,6 +108,7 @@ func _on_start_wave_button_down():
 		startNextWave.emit(wave)
 
 func towerUpgrade(upgradeBranch1,upgradeBranch2,upgradeBranch3,tower,towerNode):
+	upgradeOpen = true
 	upgradeTowerType = tower
 	upgradeTowerNode = towerNode
 	upgradeBranch1PriceMultiplyer = upgradeBranch1
@@ -107,25 +119,48 @@ func towerUpgrade(upgradeBranch1,upgradeBranch2,upgradeBranch3,tower,towerNode):
 	$"sidebar (towers)/VBoxContainer(upgrades)".visible = true
 
 func updateUpgradeButtons():
+		upgradeBranch1PriceMultiplyer = upgradeTowerNode.upgradeBranch1
+		upgradeBranch1Price = upgradeBranch1BasePrice * upgradeBranch1PriceMultiplyer
+		if(money >= upgradeBranch1Price):
+			$"sidebar (towers)/VBoxContainer(upgrades)/upgradeBranch1".modulate = Color.GREEN
+		else:
+			$"sidebar (towers)/VBoxContainer(upgrades)/upgradeBranch1".modulate = Color.RED
+		upgradeBranch2PriceMultiplyer = upgradeTowerNode.upgradeBranch2
+		upgradeBranch2Price = upgradeBranch2BasePrice * upgradeBranch2PriceMultiplyer
+		if(money >= upgradeBranch2Price):
+			$"sidebar (towers)/VBoxContainer(upgrades)/upgradeBranch2".modulate = Color.GREEN
+		else:
+			$"sidebar (towers)/VBoxContainer(upgrades)/upgradeBranch2".modulate = Color.RED
+		upgradeBranch3PriceMultiplyer = upgradeTowerNode.upgradeBranch3
+		upgradeBranch3Price = upgradeBranch3BasePrice * upgradeBranch3PriceMultiplyer
 		$"sidebar (towers)/VBoxContainer(upgrades)/Label".text = upgradeTowerType + " upgrades"
-		$"sidebar (towers)/VBoxContainer(upgrades)/upgradeBranch1".text = "increase attack speed by 10% 
-		from " + str(snapped(upgradeTowerNode.attackSpeed, 0.01))
-		$"sidebar (towers)/VBoxContainer(upgrades)/upgradeBranch2".text = "increase attack damage by 10%
-		 from " + str(snapped(upgradeTowerNode.Damage , 0.01))
+		$"sidebar (towers)/VBoxContainer(upgrades)/upgradeBranch1".text = "increase attack speed by 10%
+		from " + str(snapped(upgradeTowerNode.attackSpeed, 0.01))+ "
+		$" + str(upgradeBranch1Price)
+		$"sidebar (towers)/VBoxContainer(upgrades)/upgradeBranch2".text = "increase damage by 50%
+		from " + str(snapped(upgradeTowerNode.Damage , 0.01)) + "
+		$" + str(upgradeBranch2Price)
+	
 
 func _on_upgrade_branch_1_button_down():
-	upgradeTowerNode.attackSpeed *= 1.1
-	upgradeTowerNode.upgradeBranch1 += 1
-	updateUpgradeButtons()
+	if(money >= upgradeBranch1Price):
+		Globals.money -= upgradeBranch1Price
+		upgradeTowerNode.attackSpeed *= 1.1
+		upgradeTowerNode.upgradeBranch1 += 1
+		updateUpgradeButtons()
 
 
 func _on_upgrade_branch_2_button_down():
-		upgradeTowerNode.Damage *= 1.1
+	if(money >= upgradeBranch2Price):
+		Globals.money -= upgradeBranch2Price
+		upgradeTowerNode.Damage *= 1.5
+		upgradeTowerNode.upgradeBranch2 += 1
 		updateUpgradeButtons()
 
 func upgradeStop():
 	await get_tree().create_timer(0.01).timeout
 	if(!anyButtonPressed()):
+		upgradeOpen = false
 		$"sidebar (towers)/VBoxContainer(buttons)".visible = true
 		$"sidebar (towers)/VBoxContainer(upgrades)".visible = false
 		upgradeTowerNode = null
@@ -137,8 +172,6 @@ func anyButtonPressed():
 		if(button.button_pressed):
 			anybuttonpressed = true
 	return anybuttonpressed
-
-
 
 func _on_quit_button_button_down():
 	get_tree().quit()

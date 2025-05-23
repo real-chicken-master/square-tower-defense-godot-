@@ -10,11 +10,12 @@ var upgradeBranch2 = 1
 
 var upgradeBranch3 = 1
 
+@export var baseAttackDelay = 0.7
 
 var attackSpeed = 1:
 	set(attackspeed):
 		attackSpeed = attackspeed
-		$shootDelay.wait_time /= attackSpeed
+		$shootDelay.wait_time = (baseAttackDelay / attackSpeed)
 
 var notice = false
 

@@ -242,8 +242,8 @@ func startNextWave(waveNumber):
 		waveinfinte()
 	
 
-func towerUpgrade(upgradeBranch1,tower,towerNode):
-	$UI/UI.towerUpgrade(upgradeBranch1,tower,towerNode)
+func towerUpgrade(upgradeBranch1,upgradeBranch2,upgradeBranch3,tower,towerNode):
+	$UI/UI.towerUpgrade(upgradeBranch1,upgradeBranch2,upgradeBranch3,tower,towerNode)
 
 
 func _on_character_body_2d_shoot_disc(pos, direction, damage):
