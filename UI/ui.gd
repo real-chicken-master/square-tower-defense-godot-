@@ -44,6 +44,7 @@ var upgradeBranch3Price = upgradeBranch3BasePrice * upgradeBranch3PriceMultiplye
 
 
 func _ready():
+	$"sidebar (towers)/HBoxContainer/speedButton/Label".text = "x" + str(round(Engine.time_scale))
 	$"sidebar (towers)/VBoxContainer(buttons)/discShooter".text = "$"+str(discShooterPrice)
 	$"sidebar (towers)/VBoxContainer(buttons)/sniper".text = "$"+str(sniperPrice)
 	$"sidebar (towers)/VBoxContainer(buttons)/sprayer".text = "$"+str(sprayerPrice)
@@ -179,3 +180,14 @@ func _on_quit_button_button_down():
 
 func _on_menu_button_button_down():
 	get_tree().change_scene_to_file("res://UI/title_screen.tscn")
+
+
+func _on_button_button_down():
+	var speed = Globals.speed
+	if(speed == 1):
+		Globals.speed = 2
+	if(speed == 2):
+		Globals.speed = 1
+	Engine.time_scale = Globals.speed
+	print(Engine.time_scale)
+	$"sidebar (towers)/HBoxContainer/speedButton/Label".text = "x" + str(round(Engine.time_scale))

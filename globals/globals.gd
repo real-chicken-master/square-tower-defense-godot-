@@ -8,6 +8,8 @@ var wave = 0
 
 var waveInProgress = false
 
+var speed = 1
+
 var squaresLeftInWave = 0:
 	set(squaresLeft):
 		squaresLeftInWave = squaresLeft
@@ -22,3 +24,4 @@ func reset():
 	wave = 0
 	waveInProgress = false
 	squaresLeftInWave = 0
+	Engine.time_scale = 1.0

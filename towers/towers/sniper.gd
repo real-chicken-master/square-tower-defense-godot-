@@ -18,7 +18,7 @@ var upgradeBranch2 = 1
 
 var upgradeBranch3 = 1
 
-@export var baseAttackDelay = 1
+@export var baseAttackDelay = 1.0
 
 var attackSpeed = 1:
 	set(attackspeed):

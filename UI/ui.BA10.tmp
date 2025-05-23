@@ -118,25 +118,14 @@ grow_vertical = 0
 
 [node name="start wave" type="Button" parent="sidebar (towers)/HBoxContainer" groups=["button"]]
 layout_mode = 2
-size_flags_horizontal = 3
 text = "start wave
 "
 
-[node name="speedButton" type="Button" parent="sidebar (towers)/HBoxContainer"]
+[node name="TextEdit" type="TextEdit" parent="sidebar (towers)/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="Label" type="Label" parent="sidebar (towers)/HBoxContainer/speedButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "x1"
-label_settings = ExtResource("7_3k4ka")
-horizontal_alignment = 1
-vertical_alignment = 1
+placeholder_text = "enter a number 
+to set game speed"
 
 [node name="topbar (Stats)" type="ColorRect" parent="."]
 layout_mode = 1
@@ -260,6 +249,6 @@ uppercase = true
 [connection signal="button_down" from="sidebar (towers)/VBoxContainer(upgrades)/upgradeBranch1" to="." method="_on_upgrade_branch_1_button_down"]
 [connection signal="button_down" from="sidebar (towers)/VBoxContainer(upgrades)/upgradeBranch2" to="." method="_on_upgrade_branch_2_button_down"]
 [connection signal="button_down" from="sidebar (towers)/HBoxContainer/start wave" to="." method="_on_start_wave_button_down"]
-[connection signal="button_down" from="sidebar (towers)/HBoxContainer/speedButton" to="." method="_on_button_button_down"]
+[connection signal="text_set" from="sidebar (towers)/HBoxContainer/TextEdit" to="." method="_on_text_edit_text_set"]
 [connection signal="button_down" from="quitButton" to="." method="_on_quit_button_button_down"]
 [connection signal="button_down" from="menuButton" to="." method="_on_menu_button_button_down"]
