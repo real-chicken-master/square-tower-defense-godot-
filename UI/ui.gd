@@ -190,3 +190,9 @@ func _on_button_button_down():
 		Globals.speed = 1
 	Engine.time_scale = Globals.speed
 	$"sidebar (towers)/HBoxContainer/speedButton/Label".text = "x" + str(round(Engine.time_scale))
+
+func tutorial():
+	for button in $"sidebar (towers)".get_children():
+		if(true):
+			#button.disabled = true
+			print(button.get_groups())

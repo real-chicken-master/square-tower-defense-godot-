@@ -1,6 +1,9 @@
 extends Node
 
-var levelpath
+var levelpath:
+	set(path):
+		print(path)
+		levelpath = path
 
 var health = 100:
 	set(hp):

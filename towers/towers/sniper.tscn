@@ -36,6 +36,7 @@ shape = SubResource("CircleShape2D_q6mcy")
 [node name="shootDelay" type="Timer" parent="."]
 
 [node name="noticeCircle" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.313726)
 z_index = 1
 position = Vector2(0.00230294, 0.0109633)

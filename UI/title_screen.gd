@@ -36,3 +36,8 @@ func _on_map_2_button_button_down():
 
 func _on_back_button_button_down():
 	hideMaps()
+
+
+func _on_tutorial_button_down():
+	Globals.levelpath = "res://UI/title_screen.tscn"
+	get_tree().change_scene_to_file("res://maps/tutorialMap.tscn")
