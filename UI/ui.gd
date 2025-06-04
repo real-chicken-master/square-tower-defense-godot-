@@ -42,6 +42,7 @@ var upgradeBranch3PriceMultiplyer = 1
 var upgradeBranch3BasePrice = 50
 var upgradeBranch3Price = upgradeBranch3BasePrice * upgradeBranch3PriceMultiplyer
 
+var sellPrice = 0
 
 func _ready():
 	$"sidebar (towers)/HBoxContainer/speedButton/Label".text = "x" + str(round(Engine.time_scale))
@@ -141,7 +142,8 @@ func updateUpgradeButtons():
 		$"sidebar (towers)/VBoxContainer(upgrades)/upgradeBranch2".text = "increase damage by 50%
 		from " + str(snapped(upgradeTowerNode.Damage , 0.01)) + "
 		$" + str(upgradeBranch2Price)
-	
+		sellPrice = floor((upgradeTowerNode.price + (10*upgradeBranch1PriceMultiplyer) + (10*upgradeBranch2PriceMultiplyer) + (10*upgradeBranch3PriceMultiplyer))/1.8)
+		$"sidebar (towers)/VBoxContainer(upgrades)/sell".text = "sell for $" + str(sellPrice)
 
 func _on_upgrade_branch_1_button_down():
 	if(money >= upgradeBranch1Price):
@@ -196,3 +198,10 @@ func tutorial():
 		if(true):
 			#button.disabled = true
 			print(button.get_groups())
+
+
+func _on_sell_button_down():
+	pass
+
+func areYouSure():
+	pass

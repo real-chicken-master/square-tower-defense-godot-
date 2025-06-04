@@ -22,6 +22,8 @@ var upgradeBranch3 = 1
 
 @export var baseAttackDelay = 0.3
 
+var price = 50
+
 var attackSpeed = 1:
 	set(attackspeed):
 		attackSpeed = attackspeed

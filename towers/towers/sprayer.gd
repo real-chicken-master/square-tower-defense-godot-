@@ -10,6 +10,8 @@ var upgradeBranch2 = 1
 
 var upgradeBranch3 = 1
 
+var price = 100 
+
 @export var baseAttackDelay = 0.7
 
 var attackSpeed = 1:
