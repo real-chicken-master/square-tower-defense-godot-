@@ -204,4 +204,5 @@ func _on_sell_button_down():
 	pass
 
 func areYouSure():
-	pass
+	Engine.time_scale = 0
+	$areYouSure.visible = true

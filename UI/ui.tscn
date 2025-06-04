@@ -260,7 +260,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="areYouSure" type="ColorRect" parent="."]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -270,7 +270,7 @@ anchor_right = 0.755
 anchor_bottom = 0.619
 color = Color(0.639216, 0.478431, 0.203922, 1)
 
-[node name="Label" type="Label" parent="ColorRect"]
+[node name="Label" type="Label" parent="areYouSure"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -280,7 +280,7 @@ label_settings = ExtResource("7_3k4ka")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="yes" type="Button" parent="ColorRect"]
+[node name="yes" type="Button" parent="areYouSure"]
 modulate = Color(1, 0, 0, 1)
 layout_mode = 1
 anchors_preset = -1
@@ -290,7 +290,7 @@ anchor_right = 0.411
 anchor_bottom = 0.818
 text = "yes"
 
-[node name="yes2" type="Button" parent="ColorRect"]
+[node name="yes2" type="Button" parent="areYouSure"]
 modulate = Color(0, 1, 0, 1)
 layout_mode = 1
 anchors_preset = -1
