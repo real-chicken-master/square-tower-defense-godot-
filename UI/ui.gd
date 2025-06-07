@@ -10,6 +10,8 @@ signal towerplace(TowerType)
 
 signal startNextWave(waveNumber)
 
+signal nextLine()
+
 var towerType
 
 var health
@@ -51,8 +53,8 @@ func _ready():
 	$"sidebar (towers)/VBoxContainer(buttons)/sprayer".text = "$"+str(sprayerPrice)
 	$"sidebar (towers)/VBoxContainer(buttons)".visible = true
 	$"sidebar (towers)/VBoxContainer(upgrades)".visible = false
-	if(Globals.levelpath == "res://maps/tutorialMap.tscn"):
-		tutorial()
+	$tutorialTextBox.visible = false
+	$areYouSure.visible = false
 
 
 func _on_disc_shooter_button_down():
@@ -197,10 +199,18 @@ func _on_button_button_down():
 	$"sidebar (towers)/HBoxContainer/speedButton".text = "x" + str(round(Engine.time_scale))
 
 func tutorial():
+	var text = $tutorialTextBox/tutorialText
+	tutorailSetup(text)
+	await nextLine
+	text.text = "WELCOME TO SQUARE TOWER DEFENSE"
+
+func tutorailSetup(text):
 	for children in $"sidebar (towers)".get_children():
 		for button in children.get_children():
 			if(button.is_in_group("button")):
 				button.set_disabled(true)
+	$tutorialTextBox.visible = true
+	text.text = "HELLO CLICK NEXT TO CONTINUE"
 
 
 func _on_sell_button_down():
@@ -229,3 +239,7 @@ func areYouSure():
 			return false
 		await get_tree().create_timer(0.0000001,true,false,true).timeout
 
+
+
+func _on_next_line_button_down():
+	nextLine.emit()

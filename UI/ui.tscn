@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bnwvefyvc5koy"]
+[gd_scene load_steps=9 format=3 uid="uid://bnwvefyvc5koy"]
 
 [ext_resource type="Script" path="res://UI/ui.gd" id="1_palqw"]
 [ext_resource type="Texture2D" uid="uid://dvxdyo2rrwf4m" path="res://images/DiscShooter.png" id="2_hmbaw"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://q06m8hn7fdjh" path="res://images/heart.png" id="4_ghevu"]
 [ext_resource type="Texture2D" uid="uid://cq6dsv85bfgwb" path="res://images/$sign.png" id="5_2k8rc"]
 [ext_resource type="LabelSettings" uid="uid://douq65vob2cd7" path="res://misc settings/DefaultLabel.tres" id="7_3k4ka"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_cy8kh"]
+font_size = 30
 
 [node name="UI" type="Control"]
 z_index = 2
@@ -289,6 +292,37 @@ anchor_bottom = 0.818
 text = "no
 "
 
+[node name="tutorialTextBox" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.18
+anchor_top = 0.853
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.639216, 0.478431, 0.203922, 1)
+
+[node name="tutorialText" type="Label" parent="tutorialTextBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_cy8kh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="nextLine" type="Button" parent="tutorialTextBox"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.863
+anchor_top = 0.585
+anchor_right = 0.988
+anchor_bottom = 0.896
+text = "NEXT >"
+
 [connection signal="button_down" from="sidebar (towers)/VBoxContainer(buttons)/discShooter" to="." method="_on_disc_shooter_button_down"]
 [connection signal="button_down" from="sidebar (towers)/VBoxContainer(buttons)/sniper" to="." method="_on_sniper_button_down"]
 [connection signal="button_down" from="sidebar (towers)/VBoxContainer(buttons)/sprayer" to="." method="_on_sprayer_button_down"]
@@ -299,3 +333,4 @@ text = "no
 [connection signal="button_down" from="sidebar (towers)/HBoxContainer/speedButton" to="." method="_on_button_button_down"]
 [connection signal="button_down" from="quitButton" to="." method="_on_quit_button_button_down"]
 [connection signal="button_down" from="menuButton" to="." method="_on_menu_button_button_down"]
+[connection signal="button_down" from="tutorialTextBox/nextLine" to="." method="_on_next_line_button_down"]
