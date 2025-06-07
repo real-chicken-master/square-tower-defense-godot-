@@ -2,7 +2,6 @@ extends Node
 
 var levelpath:
 	set(path):
-		print(path)
 		levelpath = path
 
 var health = 100:
