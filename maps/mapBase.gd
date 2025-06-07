@@ -207,7 +207,16 @@ func waveinfinte():
 		await wave10()
 	waveinfiniteMultiplyer += 1
 
+func tutorialwave():
+	Globals.squaresLeftInWave += 2
+	for num in 2:
+		createSquare("red")
+		await get_tree().create_timer(0.31).timeout
+
 func startNextWave(waveNumber):
+	if(waveNumber == 0):
+		Globals.waveInProgress = true
+		tutorialwave()
 	if(waveNumber == 1):
 		Globals.waveInProgress = true
 		wave1()

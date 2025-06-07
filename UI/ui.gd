@@ -112,11 +112,15 @@ func updateTowerButtons():
 
 
 func _on_start_wave_button_down():
-	if(!Globals.waveInProgress):
-		Globals.waveInProgress = true
-		Globals.wave += 1
-		wave = Globals.wave
-		startNextWave.emit(wave)
+	if(Globals.Tutorial):
+		startNextWave.emit(0)
+	else:
+		if(!Globals.waveInProgress):
+			Globals.waveInProgress = true
+			nextline()
+			Globals.wave += 1
+			wave = Globals.wave
+			startNextWave.emit(wave)
 
 func towerUpgrade(upgradeBranch1,upgradeBranch2,upgradeBranch3,tower,towerNode):
 	if(Globals.Tutorial):
@@ -157,6 +161,8 @@ func updateUpgradeButtons():
 		$"sidebar (towers)/VBoxContainer(upgrades)/sell".text = "sell for $" + str(sellPrice)
 
 func _on_upgrade_branch_1_button_down():
+	if(Globals.Tutorial):
+		nextline()
 	if(money >= upgradeBranch1Price):
 		upgradeTowerNode.attackSpeed *= 1.1
 		upgradeTowerNode.upgradeBranch1 += 1
@@ -174,6 +180,8 @@ func _on_upgrade_branch_2_button_down():
 func upgradeStop():
 	await get_tree().create_timer(0.01).timeout
 	if(upgradecanclose):
+		if(Globals.Tutorial):
+			nextline()
 		if(!anyButtonPressed()):
 			upgradeOpen = false
 			$"sidebar (towers)/VBoxContainer(buttons)".visible = true
@@ -249,7 +257,8 @@ func tutorial():
 	TIMES 1 (x1) AND TIMES 2 (x2)"
 	await nextLine
 	textLabel.text = "LETS TRY PLACE A TOWER CLICK ON THE DISC SHOOTER TOWER (THE TOP TOWER)"
-	allowDiscShooterPlace()
+	$tutorialTextBox/nextLine.set_disabled(true)
+	$"sidebar (towers)/VBoxContainer(buttons)/discShooter".set_disabled(false)
 	await nextLine
 	$"sidebar (towers)/VBoxContainer(buttons)/discShooter".set_disabled(true)
 	textLabel.text = "NOW PLACE IT ANYWHERE THAT IS GREEN"
@@ -258,19 +267,34 @@ func tutorial():
 	textLabel.text = "GREAT NOW LETS TRY UPGRADE IT
 	CLICK ON THE TOWER TO OPEN THE UPGRADE MENU"
 	await nextLine
-	textLabel.text = "GREAT NOW LETS TRY UPGRADE IT"
+	textLabel.text = "NOW CLICK ON THE TOP UPGRADE (ATTACK SPEED) FOR $30"
 	$"sidebar (towers)/VBoxContainer(upgrades)/upgradeBranch1".set_disabled(false)
-	await nextline
+	await nextLine
 	upgradecanclose = true
 	upgradecanopen = false
 	textLabel.text = "GOOD JOB NOW CLICK ANYWHERE ON THE MAP 
 	EXCEPT FOR THE TOWER TO CLOSE THE UPGRADE MENU"
+	await nextLine
+	$"sidebar (towers)/HBoxContainer/start wave".set_disabled(false)
+	textLabel.text = "NOW CLICK ON THE START WAVE BUTTON TO SEND SQUARES"
+	await nextline
+	textLabel.text = "WATCH YOUR TOWER DESTORY THE SQUARES"
+	await Globals.waveInProgress == false
+	upgradecanopen = true
+	textLabel.text = "NOW FINALY LETS SELL YOUR TOWER
+	OPEN THE UPGRADE MENU AGAIN"
+	await nextLine
+	$"sidebar (towers)/VBoxContainer(upgrades)/sell".is_disabled(false)
+	textLabel.text = "CLICK ON THE RED BUTTON AT THE BOTTOM"
 
-func allowDiscShooterPlace():
-	$tutorialTextBox/nextLine.set_disabled(true)
-	$"sidebar (towers)/VBoxContainer(buttons)/discShooter".set_disabled(false)
+
+
+
+
 
 func tutorialSetup(textLabel):
+	upgradecanclose = false
+	upgradecanopen = false
 	Globals.Tutorial = true
 	for children in $"sidebar (towers)".get_children():
 		for button in children.get_children():
@@ -281,6 +305,8 @@ func tutorialSetup(textLabel):
 
 
 func _on_sell_button_down():
+	if(Globals.Tutorial):
+		nextLine.emit()
 	var temp_time = Engine.time_scale
 	var comformation = await areYouSure()
 	if(comformation):
@@ -294,7 +320,6 @@ func _on_sell_button_down():
 	
 
 func areYouSure():
-	
 	$areYouSure/no.set_pressed(false)
 	Engine.time_scale = 0
 	$areYouSure.visible = true
