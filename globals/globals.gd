@@ -18,7 +18,14 @@ var money = 100
 
 var wave = 0
 
-var waveInProgress = false
+signal waveEnd()
+
+var waveInProgress = false:
+	set(temp):
+		waveInProgress = temp
+		if(temp == false):
+			waveEnd.emit()
+		
 
 var speed = 1
 

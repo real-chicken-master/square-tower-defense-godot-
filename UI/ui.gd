@@ -114,26 +114,27 @@ func updateTowerButtons():
 func _on_start_wave_button_down():
 	if(Globals.Tutorial):
 		startNextWave.emit(0)
+		nextline()
 	else:
 		if(!Globals.waveInProgress):
 			Globals.waveInProgress = true
-			nextline()
 			Globals.wave += 1
 			wave = Globals.wave
 			startNextWave.emit(wave)
 
 func towerUpgrade(upgradeBranch1,upgradeBranch2,upgradeBranch3,tower,towerNode):
-	if(Globals.Tutorial):
-		nextline()
-	upgradeOpen = true
-	upgradeTowerType = tower
-	upgradeTowerNode = towerNode
-	upgradeBranch1PriceMultiplyer = upgradeBranch1
-	upgradeBranch2PriceMultiplyer = upgradeBranch2
-	upgradeBranch3PriceMultiplyer = upgradeBranch3
-	updateUpgradeButtons()
-	$"sidebar (towers)/VBoxContainer(buttons)".visible = false
-	$"sidebar (towers)/VBoxContainer(upgrades)".visible = true
+	if(upgradecanopen):
+		if(Globals.Tutorial):
+				nextline()
+		upgradeOpen = true
+		upgradeTowerType = tower
+		upgradeTowerNode = towerNode
+		upgradeBranch1PriceMultiplyer = upgradeBranch1
+		upgradeBranch2PriceMultiplyer = upgradeBranch2
+		upgradeBranch3PriceMultiplyer = upgradeBranch3
+		updateUpgradeButtons()
+		$"sidebar (towers)/VBoxContainer(buttons)".visible = false
+		$"sidebar (towers)/VBoxContainer(upgrades)".visible = true
 
 func updateUpgradeButtons():
 		upgradeBranch1PriceMultiplyer = upgradeTowerNode.upgradeBranch1
@@ -201,10 +202,12 @@ func _on_quit_button_button_down():
 
 
 func _on_menu_button_button_down():
-	get_tree().change_scene_to_file("res://UI/title_screen.tscn")
+	TransitionLayer.changeScene("res://UI/title_screen.tscn")
 
 
-func _on_button_button_down():
+func _on_speed_button_button_down():
+	if(Globals.Tutorial):
+		nextline()
 	var speed = Globals.speed
 	if(speed == 1):
 		Globals.speed = 2
@@ -264,28 +267,59 @@ func tutorial():
 	textLabel.text = "NOW PLACE IT ANYWHERE THAT IS GREEN"
 	await nextLine
 	upgradecanclose = false
+	upgradecanopen = true
 	textLabel.text = "GREAT NOW LETS TRY UPGRADE IT
 	CLICK ON THE TOWER TO OPEN THE UPGRADE MENU"
 	await nextLine
 	textLabel.text = "NOW CLICK ON THE TOP UPGRADE (ATTACK SPEED) FOR $30"
 	$"sidebar (towers)/VBoxContainer(upgrades)/upgradeBranch1".set_disabled(false)
 	await nextLine
+	$"sidebar (towers)/VBoxContainer(upgrades)/upgradeBranch1".set_disabled(true)
+	await get_tree().create_timer(0.001).timeout
 	upgradecanclose = true
 	upgradecanopen = false
 	textLabel.text = "GOOD JOB NOW CLICK ANYWHERE ON THE MAP 
 	EXCEPT FOR THE TOWER TO CLOSE THE UPGRADE MENU"
 	await nextLine
+	upgradecanclose = false
 	$"sidebar (towers)/HBoxContainer/start wave".set_disabled(false)
 	textLabel.text = "NOW CLICK ON THE START WAVE BUTTON TO SEND SQUARES"
-	await nextline
+	await nextLine
+	$"sidebar (towers)/HBoxContainer/start wave".set_disabled(true)
 	textLabel.text = "WATCH YOUR TOWER DESTORY THE SQUARES"
-	await Globals.waveInProgress == false
+	await get_tree().create_timer(0.001).timeout
+	await Globals.waveEnd
+	$"sidebar (towers)/HBoxContainer/speedButton".set_disabled(false)
+	textLabel.text = "CLICK THE SPEED BUTTON TO CHANGE THE GAME SPEED TO x2"
+	await nextLine
+	$"sidebar (towers)/HBoxContainer/speedButton".set_disabled(true)
+	$"sidebar (towers)/HBoxContainer/start wave".set_disabled(false)
+	textLabel.text = "NOW CLICK THE START WAVE BUTTON AGAIN"
+	await nextLine
+	$"sidebar (towers)/HBoxContainer/start wave".set_disabled(true)
+	textLabel.text = "SEE HOW THE SQUARES MOVE TWICE AS FAST AND AS WELL AS THE TOWERS"
+	await get_tree().create_timer(0.001).timeout
+	await Globals.waveEnd
 	upgradecanopen = true
 	textLabel.text = "NOW FINALY LETS SELL YOUR TOWER
 	OPEN THE UPGRADE MENU AGAIN"
 	await nextLine
-	$"sidebar (towers)/VBoxContainer(upgrades)/sell".is_disabled(false)
+	$"sidebar (towers)/VBoxContainer(upgrades)/sell".set_disabled(false)
 	textLabel.text = "CLICK ON THE RED BUTTON AT THE BOTTOM"
+	await nextLine
+	upgradecanclose = true
+	$areYouSure/no.set_disabled(true)
+	$"sidebar (towers)/VBoxContainer(upgrades)/sell".set_disabled(true)
+	textLabel.text = "YOU CAN EITHER CLICK YES IF YOU WANT TO SELL THAT TOWER 
+	OR NO IF YOU DONT FOR THIS EXAMPLE CLICK YES"
+	await nextLine
+	upgradecanclose = false
+	$tutorialTextBox/nextLine.set_disabled(false)
+	textLabel.text = "CONGRATULATIONS YOU HAVE COMPLETED THE TUTORIAL CLICK NEXT TO 
+	RETURN TO THE TITLE SCREEN"
+	await nextLine
+	await get_tree().create_timer(0.001).timeout
+	TransitionLayer.changeScene("res://UI/title_screen.tscn")
 
 
 
@@ -329,7 +363,8 @@ func areYouSure():
 			return true
 		if($areYouSure/no.button_pressed):
 			return false
-		await get_tree().create_timer(0.0000001,true,false,true).timeout
+		if(is_instance_valid(get_tree())):
+			await get_tree().create_timer(0.0000001,true,false,true).timeout
 
 
 
@@ -338,3 +373,4 @@ func _on_next_line_button_down():
 
 func  nextline():
 	nextLine.emit()
+

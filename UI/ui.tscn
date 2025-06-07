@@ -333,7 +333,7 @@ text = "NEXT >"
 [connection signal="button_down" from="sidebar (towers)/VBoxContainer(upgrades)/upgradeBranch2" to="." method="_on_upgrade_branch_2_button_down"]
 [connection signal="button_down" from="sidebar (towers)/VBoxContainer(upgrades)/sell" to="." method="_on_sell_button_down"]
 [connection signal="button_down" from="sidebar (towers)/HBoxContainer/start wave" to="." method="_on_start_wave_button_down"]
-[connection signal="button_down" from="sidebar (towers)/HBoxContainer/speedButton" to="." method="_on_button_button_down"]
+[connection signal="button_down" from="sidebar (towers)/HBoxContainer/speedButton" to="." method="_on_speed_button_button_down"]
 [connection signal="button_down" from="quitButton" to="." method="_on_quit_button_button_down"]
 [connection signal="button_down" from="menuButton" to="." method="_on_menu_button_button_down"]
 [connection signal="button_down" from="tutorialTextBox/nextLine" to="." method="_on_next_line_button_down"]

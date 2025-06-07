@@ -248,6 +248,7 @@ func startNextWave(waveNumber):
 		Globals.waveInProgress = true
 		wave10()
 	if(waveNumber > 10):
+		Globals.waveInProgress = true
 		waveinfinte()
 	
 

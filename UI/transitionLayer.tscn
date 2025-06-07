@@ -1,0 +1,111 @@
+[gd_scene load_steps=7 format=3 uid="uid://dna7jwgjnu230"]
+
+[ext_resource type="Script" path="res://UI/transitionLayer.gd" id="1_6bpc1"]
+[ext_resource type="Texture2D" uid="uid://dym1seqplch0v" path="res://images/wheelOfDoom.png" id="2_ekf7v"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8vgxu"]
+font_size = 120
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_t0nw4"]
+resource_name = "fade_animation"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.499, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_jdjvt"]
+resource_name = "loading"
+length = 1.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect/loadingArea/WheelOfDoom:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.4001, 1, 1.0001, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 6.28319, 0.0, 6.28319, 0.0, 1.0472]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g6rgo"]
+_data = {
+"fade_animation": SubResource("Animation_t0nw4"),
+"loading": SubResource("Animation_jdjvt")
+}
+
+[node name="transitionLayer" type="CanvasLayer"]
+script = ExtResource("1_6bpc1")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="loadingArea" type="ColorRect" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.24
+anchor_top = 0.327
+anchor_right = 0.758
+anchor_bottom = 0.684
+offset_left = 229.28
+offset_top = 82.156
+offset_right = 229.28
+offset_bottom = 82.156
+scale = Vector2(0.5, 0.5)
+color = Color(1, 1, 1, 0.247059)
+
+[node name="WheelOfDoom" type="Sprite2D" parent="ColorRect/loadingArea"]
+position = Vector2(690.28, 166.156)
+texture = ExtResource("2_ekf7v")
+
+[node name="Label" type="Label" parent="ColorRect/loadingArea"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.03
+anchor_top = 0.208
+anchor_right = 0.8
+anchor_bottom = 0.86
+offset_left = 0.426849
+offset_top = -0.0208588
+offset_right = -0.141418
+offset_bottom = 0.133362
+grow_horizontal = 2
+grow_vertical = 2
+text = "loading"
+label_settings = SubResource("LabelSettings_8vgxu")
+horizontal_alignment = 3
+vertical_alignment = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_g6rgo")
+}
