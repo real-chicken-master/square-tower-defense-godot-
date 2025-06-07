@@ -45,12 +45,14 @@ var upgradeBranch3Price = upgradeBranch3BasePrice * upgradeBranch3PriceMultiplye
 var sellPrice = 0
 
 func _ready():
-	$"sidebar (towers)/HBoxContainer/speedButton/Label".text = "x" + str(round(Engine.time_scale))
+	$"sidebar (towers)/HBoxContainer/speedButton".text = "x" + str(round(Engine.time_scale))
 	$"sidebar (towers)/VBoxContainer(buttons)/discShooter".text = "$"+str(discShooterPrice)
 	$"sidebar (towers)/VBoxContainer(buttons)/sniper".text = "$"+str(sniperPrice)
 	$"sidebar (towers)/VBoxContainer(buttons)/sprayer".text = "$"+str(sprayerPrice)
 	$"sidebar (towers)/VBoxContainer(buttons)".visible = true
 	$"sidebar (towers)/VBoxContainer(upgrades)".visible = false
+	if(Globals.levelpath == "res://maps/tutorialMap.tscn"):
+		tutorial()
 
 
 func _on_disc_shooter_button_down():
@@ -76,7 +78,8 @@ func _process(_delta):
 	updateStats()
 	updateTowerButtons()
 	if(upgradeOpen):
-		updateUpgradeButtons()
+		if(is_instance_valid(upgradeTowerNode)):
+			updateUpgradeButtons()
 
 func updateStats():
 	health = Globals.health
@@ -142,23 +145,23 @@ func updateUpgradeButtons():
 		$"sidebar (towers)/VBoxContainer(upgrades)/upgradeBranch2".text = "increase damage by 50%
 		from " + str(snapped(upgradeTowerNode.Damage , 0.01)) + "
 		$" + str(upgradeBranch2Price)
-		sellPrice = floor((upgradeTowerNode.price + (10*upgradeBranch1PriceMultiplyer) + (10*upgradeBranch2PriceMultiplyer) + (10*upgradeBranch3PriceMultiplyer))/1.8)
+		sellPrice = floor((upgradeTowerNode.price + (10*upgradeBranch1PriceMultiplyer) + (12*upgradeBranch2PriceMultiplyer) + (10*upgradeBranch3PriceMultiplyer))/1.8)
 		$"sidebar (towers)/VBoxContainer(upgrades)/sell".text = "sell for $" + str(sellPrice)
 
 func _on_upgrade_branch_1_button_down():
 	if(money >= upgradeBranch1Price):
-		Globals.money -= upgradeBranch1Price
 		upgradeTowerNode.attackSpeed *= 1.1
 		upgradeTowerNode.upgradeBranch1 += 1
-		updateUpgradeButtons()
+		Globals.money -= upgradeBranch1Price
+	updateUpgradeButtons()
 
 
 func _on_upgrade_branch_2_button_down():
 	if(money >= upgradeBranch2Price):
-		Globals.money -= upgradeBranch2Price
 		upgradeTowerNode.Damage *= 1.5
 		upgradeTowerNode.upgradeBranch2 += 1
-		updateUpgradeButtons()
+		Globals.money -= upgradeBranch2Price
+	updateUpgradeButtons()
 
 func upgradeStop():
 	await get_tree().create_timer(0.01).timeout
@@ -191,18 +194,38 @@ func _on_button_button_down():
 	if(speed == 2):
 		Globals.speed = 1
 	Engine.time_scale = Globals.speed
-	$"sidebar (towers)/HBoxContainer/speedButton/Label".text = "x" + str(round(Engine.time_scale))
+	$"sidebar (towers)/HBoxContainer/speedButton".text = "x" + str(round(Engine.time_scale))
 
 func tutorial():
-	for button in $"sidebar (towers)".get_children():
-		if(true):
-			#button.disabled = true
-			print(button.get_groups())
+	for children in $"sidebar (towers)".get_children():
+		for button in children.get_children():
+			if(button.is_in_group("button")):
+				button.set_disabled(true)
 
 
 func _on_sell_button_down():
-	pass
+	var temp_time = Engine.time_scale
+	var comformation = await areYouSure()
+	if(comformation):
+		Globals.money += sellPrice
+		upgradeTowerNode.queue_free()
+		Engine.time_scale = temp_time
+		$areYouSure.visible = false
+	else :
+		Engine.time_scale = temp_time
+		$areYouSure.visible = false
+	
 
 func areYouSure():
+	$areYouSure/yes.set_pressed(false)
+	$areYouSure/no.set_pressed(false)
 	Engine.time_scale = 0
 	$areYouSure.visible = true
+	var buttonClicked = false
+	while (!buttonClicked):
+		if($areYouSure/yes.button_pressed):
+			return true
+		if($areYouSure/no.button_pressed):
+			return false
+		await get_tree().create_timer(0.0000001,true,false,true).timeout
+
