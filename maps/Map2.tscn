@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cytm5sfimf3o7"]
 
 [ext_resource type="PackedScene" uid="uid://uqmsffodfali" path="res://maps/mapBase.tscn" id="1_0hwng"]
-[ext_resource type="Script" path="res://map2.gd" id="2_kxlef"]
+[ext_resource type="Script" path="res://maps/map2.gd" id="2_kxlef"]
 
 [sub_resource type="Curve2D" id="Curve2D_cefg7"]
 _data = {

@@ -29,6 +29,10 @@ var attackSpeed = 1:
 		attackSpeed = attackspeed
 		$shootDelay.wait_time = (baseAttackDelay / attackSpeed)
 
+func _ready():
+	if (Globals.Tutorial):
+		get_tree().get_first_node_in_group("ui").nextline()
+
 func _process(_delta):
 	getTarget()
 	if(notice):

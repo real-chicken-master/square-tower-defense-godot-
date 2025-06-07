@@ -37,3 +37,5 @@ func reset():
 	waveInProgress = false
 	squaresLeftInWave = 0
 	Engine.time_scale = 1.0
+
+var Tutorial = false

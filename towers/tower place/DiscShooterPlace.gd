@@ -8,6 +8,10 @@ var blockingObjects = []
 
 signal placeTower(towerType,pos)
 
+func _ready():
+	if (Globals.Tutorial):
+		get_tree().get_first_node_in_group("ui").nextline()
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	global_position = get_global_mouse_position()

@@ -46,6 +46,10 @@ var upgradeBranch3Price = upgradeBranch3BasePrice * upgradeBranch3PriceMultiplye
 
 var sellPrice = 0
 
+var upgradecanopen
+
+var upgradecanclose = true
+
 func _ready():
 	$"sidebar (towers)/HBoxContainer/speedButton".text = "x" + str(round(Engine.time_scale))
 	$"sidebar (towers)/VBoxContainer(buttons)/discShooter".text = "$"+str(discShooterPrice)
@@ -115,6 +119,8 @@ func _on_start_wave_button_down():
 		startNextWave.emit(wave)
 
 func towerUpgrade(upgradeBranch1,upgradeBranch2,upgradeBranch3,tower,towerNode):
+	if(Globals.Tutorial):
+		nextline()
 	upgradeOpen = true
 	upgradeTowerType = tower
 	upgradeTowerNode = towerNode
@@ -167,12 +173,13 @@ func _on_upgrade_branch_2_button_down():
 
 func upgradeStop():
 	await get_tree().create_timer(0.01).timeout
-	if(!anyButtonPressed()):
-		upgradeOpen = false
-		$"sidebar (towers)/VBoxContainer(buttons)".visible = true
-		$"sidebar (towers)/VBoxContainer(upgrades)".visible = false
-		upgradeTowerNode = null
-		upgradeTowerType = null
+	if(upgradecanclose):
+		if(!anyButtonPressed()):
+			upgradeOpen = false
+			$"sidebar (towers)/VBoxContainer(buttons)".visible = true
+			$"sidebar (towers)/VBoxContainer(upgrades)".visible = false
+			upgradeTowerNode = null
+			upgradeTowerType = null
 
 func anyButtonPressed():
 	var anybuttonpressed = false
@@ -199,18 +206,78 @@ func _on_button_button_down():
 	$"sidebar (towers)/HBoxContainer/speedButton".text = "x" + str(round(Engine.time_scale))
 
 func tutorial():
-	var text = $tutorialTextBox/tutorialText
-	tutorailSetup(text)
+	var textLabel = $tutorialTextBox/tutorialText
+	tutorialSetup(textLabel)
 	await nextLine
-	text.text = "WELCOME TO SQUARE TOWER DEFENSE"
+	textLabel.text = "WELCOME TO SQUARE TOWER DEFENSE"
+	await nextLine
+	textLabel.text = "IN THE TOP LEFT CORNER YOU SHOULD SEE 
+	A QUIT BUTTON AND MENU BUTTON"
+	await nextLine
+	textLabel.text = "THE QUIT BUTTON WILL CLOSE THE GAME"
+	await nextLine
+	textLabel.text = "THE MENU BUTTON WILL TAKE YOU BACK TO THE TITLE SCREEN"
+	await nextLine
+	textLabel.text = "AT THE TOP OF YOUR SCREEN YOU SHOULD SEE YOUR
+	WAVE NUMBER, HEALTH AND MONEY"
+	await nextLine
+	textLabel.text = "THE WAVE NUMBER WILL INCREASE WHENEVER YOU CLICK THE START WAVE BUTTON"
+	await nextLine
+	textLabel.text = "YOUR HEALTH WILL DECREASE WHENEVER SQUARES REACH THE END OF THE PATH"
+	await nextLine
+	textLabel.text = "YOUR MONEY WILL INCREASE WHENEVER YOU DAMAGE A SQUARE"
+	await nextLine
+	textLabel.text = "ON YOUR LEFT YOU WILL SEE A LIST OF TOWERS,
+	THE NEXT WAVE BUTTON AND THE SPEED MULTIPLYER BUTTON"
+	await nextLine
+	textLabel.text = "THE TOWER AT THE TOP IS CALLED THE DISC SHOOTER IT COSTS $50"
+	await nextLine
+	textLabel.text = "THE DISC SHOOTER IS THE CHEAPEST BUT MOST BASIC TOWER"
+	await nextLine
+	textLabel.text = "THE TOWER IN THE MIDDLE IS CALLED THE SNIPER AND COSTS $75"
+	await nextLine
+	textLabel.text = "THE SNIPER IS THE SLOWEST TOWER BUT DOES THE MOST DAMAGE 
+	AND HAS UNLIMITED RANGE"
+	await nextLine
+	textLabel.text = "THE TOWER AT THE BOTTOM IS CALLED THE SPRAYER AND COSTS $100"
+	await nextLine
+	textLabel.text = "THE SPRAYER SHOOTS FOUR PROJECTILES AT ONCE"
+	await nextLine
+	textLabel.text = "THE NEXT WAVE BUTTON STARTS THE NEXT WAVE"
+	await nextLine
+	textLabel.text = "THE SPEED MULTIPLYER BUTTON SWITCH'S THE GAME SPEED BETWEEN
+	TIMES 1 (x1) AND TIMES 2 (x2)"
+	await nextLine
+	textLabel.text = "LETS TRY PLACE A TOWER CLICK ON THE DISC SHOOTER TOWER (THE TOP TOWER)"
+	allowDiscShooterPlace()
+	await nextLine
+	$"sidebar (towers)/VBoxContainer(buttons)/discShooter".set_disabled(true)
+	textLabel.text = "NOW PLACE IT ANYWHERE THAT IS GREEN"
+	await nextLine
+	upgradecanclose = false
+	textLabel.text = "GREAT NOW LETS TRY UPGRADE IT
+	CLICK ON THE TOWER TO OPEN THE UPGRADE MENU"
+	await nextLine
+	textLabel.text = "GREAT NOW LETS TRY UPGRADE IT"
+	$"sidebar (towers)/VBoxContainer(upgrades)/upgradeBranch1".set_disabled(false)
+	await nextline
+	upgradecanclose = true
+	upgradecanopen = false
+	textLabel.text = "GOOD JOB NOW CLICK ANYWHERE ON THE MAP 
+	EXCEPT FOR THE TOWER TO CLOSE THE UPGRADE MENU"
 
-func tutorailSetup(text):
+func allowDiscShooterPlace():
+	$tutorialTextBox/nextLine.set_disabled(true)
+	$"sidebar (towers)/VBoxContainer(buttons)/discShooter".set_disabled(false)
+
+func tutorialSetup(textLabel):
+	Globals.Tutorial = true
 	for children in $"sidebar (towers)".get_children():
 		for button in children.get_children():
 			if(button.is_in_group("button")):
 				button.set_disabled(true)
 	$tutorialTextBox.visible = true
-	text.text = "HELLO CLICK NEXT TO CONTINUE"
+	textLabel.text = "HELLO CLICK NEXT TO CONTINUE"
 
 
 func _on_sell_button_down():
@@ -227,7 +294,7 @@ func _on_sell_button_down():
 	
 
 func areYouSure():
-	$areYouSure/yes.set_pressed(false)
+	
 	$areYouSure/no.set_pressed(false)
 	Engine.time_scale = 0
 	$areYouSure.visible = true
@@ -242,4 +309,7 @@ func areYouSure():
 
 
 func _on_next_line_button_down():
+	nextline()
+
+func  nextline():
 	nextLine.emit()

@@ -10,8 +10,10 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_cy8kh"]
 font_size = 30
+outline_size = 3
+outline_color = Color(0, 0, 0, 0.784314)
 
-[node name="UI" type="Control"]
+[node name="UI" type="Control" groups=["ui"]]
 z_index = 2
 layout_mode = 3
 anchors_preset = 15
@@ -134,6 +136,7 @@ text = "start wave
 [node name="speedButton" type="Button" parent="sidebar (towers)/HBoxContainer" groups=["button"]]
 layout_mode = 2
 size_flags_horizontal = 3
+text = "x1"
 
 [node name="topbar (Stats)" type="ColorRect" parent="."]
 layout_mode = 1
@@ -317,10 +320,10 @@ vertical_alignment = 1
 [node name="nextLine" type="Button" parent="tutorialTextBox"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.863
-anchor_top = 0.585
-anchor_right = 0.988
-anchor_bottom = 0.896
+anchor_left = 0.89
+anchor_top = 0.715
+anchor_right = 0.997
+anchor_bottom = 0.977
 text = "NEXT >"
 
 [connection signal="button_down" from="sidebar (towers)/VBoxContainer(buttons)/discShooter" to="." method="_on_disc_shooter_button_down"]
