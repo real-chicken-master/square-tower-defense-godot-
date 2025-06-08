@@ -36,7 +36,7 @@ func _process(_delta):
 			for marker in $Sprayer.get_children():
 				var pos = marker.global_position
 				var Direction = (marker.global_position - global_position).normalized()
-				shootDisc.emit(pos, Direction,Damage)
+				shootDisc.emit(pos, Direction,Damage,null)
 				canShoot = false
 				$shootDelay.start()
 

@@ -41,7 +41,7 @@ func _process(_delta):
 		if(canShoot):
 			var pos = $DiscShooter/Marker2D.global_position
 			var Direction = (target.global_position - global_position).normalized()
-			shootDisc.emit(pos, Direction,Damage)
+			shootDisc.emit(pos, Direction,Damage,target)
 			canShoot = false
 			$shootDelay.start()
 

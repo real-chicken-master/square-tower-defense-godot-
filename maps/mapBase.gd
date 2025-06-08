@@ -97,11 +97,12 @@ func createSquare(type):
 		square.health = 100
 		$SquarePath/SquarePath.add_child(square)
 
-func shoot_disc(pos, direction,damage):
+func shoot_disc(pos, direction,damage,target):
 	var disc = disc_scene.instantiate() as Area2D
 	disc.global_position = pos
 	disc.direction = direction
 	disc.damage = damage
+	disc.target = target
 	$towers/projectiles.add_child(disc)
 
 
@@ -256,8 +257,8 @@ func towerUpgrade(upgradeBranch1,upgradeBranch2,upgradeBranch3,tower,towerNode):
 	$UI/UI.towerUpgrade(upgradeBranch1,upgradeBranch2,upgradeBranch3,tower,towerNode)
 
 
-func _on_character_body_2d_shoot_disc(pos, direction, damage):
-	shoot_disc(pos, direction, damage)
+func _on_character_body_2d_shoot_disc(pos, direction, damage,target):
+	shoot_disc(pos, direction, damage,target)
 
 func _input(event):
 	if(event is InputEventMouseButton and event.pressed):

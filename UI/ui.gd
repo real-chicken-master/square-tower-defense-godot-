@@ -46,7 +46,7 @@ var upgradeBranch3Price = upgradeBranch3BasePrice * upgradeBranch3PriceMultiplye
 
 var sellPrice = 0
 
-var upgradecanopen
+var upgradecanopen = true
 
 var upgradecanclose = true
 
