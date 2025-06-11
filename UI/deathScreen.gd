@@ -11,7 +11,7 @@ func _on_quit_button_button_down():
 
 
 func _on_menu_button_button_down():
-	Globals.reset
+	Globals.reset()
 	TransitionLayer.changeScene("res://UI/title_screen.tscn")
 
 

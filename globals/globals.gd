@@ -5,8 +5,9 @@ var levelpath:
 		levelpath = path
 
 var health = 100:
+	
 	set(hp):
-		if(hp > health):
+		if(hp < 0):
 			health = 0
 		else:
 			health = hp
@@ -37,12 +38,13 @@ var squaresLeftInWave = 0:
 			waveInProgress = true
 
 func reset():
-	Tutorial = false
 	health = 100
+	Tutorial = false
 	money = 100
 	wave = 0
 	waveInProgress = false
 	squaresLeftInWave = 0
+	speed = 1
 	Engine.time_scale = 1.0
 
 var Tutorial = false

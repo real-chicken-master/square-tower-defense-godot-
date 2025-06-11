@@ -277,6 +277,7 @@ func tutorial():
 	$"sidebar (towers)/VBoxContainer(buttons)/discShooter".set_disabled(true)
 	textLabel.text = "NOW PLACE IT ANYWHERE THAT IS GREEN"
 	await nextLine
+	disable_buttons()
 	upgradecanclose = false
 	upgradecanopen = true
 	textLabel.text = "GREAT NOW LETS TRY UPGRADE IT

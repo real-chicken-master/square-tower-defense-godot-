@@ -1,9 +1,10 @@
 extends Control
 
 func _ready():
+	Globals.reset()
 	$mainButtons.visible = true
 	$levelButtons.visible = false
-	Globals.reset()
+
 func _on_start_button_button_down():
 	showMaps()
 
