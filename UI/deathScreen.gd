@@ -11,8 +11,9 @@ func _on_quit_button_button_down():
 
 
 func _on_menu_button_button_down():
-	get_tree().change_scene_to_file("res://UI/title_screen.tscn")
+	Globals.reset
+	TransitionLayer.changeScene("res://UI/title_screen.tscn")
 
 
 func _on_restart_button_button_down():
-	get_tree().change_scene_to_file(Globals.levelpath)
+	TransitionLayer.changeScene(Globals.levelpath)

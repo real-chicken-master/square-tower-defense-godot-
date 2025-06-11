@@ -19,6 +19,7 @@ var waveinfiniteMultiplyer = 1
 
 
 func _ready():
+	Globals.reset()
 	connectSignals()
 
 func connectSignals():

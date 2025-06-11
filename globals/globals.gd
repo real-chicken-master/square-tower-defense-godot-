@@ -10,8 +10,8 @@ var health = 100:
 			health = 0
 		else:
 			health = hp
-		if (health == 0):
-			get_tree().change_scene_to_file("res://UI/deathScreen.tscn")
+		if (health <= 0):
+			TransitionLayer.changeScene("res://UI/deathScreen.tscn")
 
 var money = 100
 
