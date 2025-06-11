@@ -29,6 +29,7 @@ func connectSignals():
 	$UI/UI.connect("startNextWave" ,startNextWave)
 
 func towerPlace(towerType):
+	$UI/UI.disable_buttons()
 	if(towerType == "disc Shooter"):
 		var DiscShooterPlace = discShooterPlace_scene.instantiate() as Sprite2D
 		DiscShooterPlace.connect("placeTower",placeTower)
@@ -46,6 +47,7 @@ func upgradeStop():
 	$UI/UI.upgradeStop()
 
 func placeTower(towerType,pos):
+	$UI/UI.enable_buttons()
 	if(towerType == "discShooter"):
 		var discShooter = discShooter_scene.instantiate() as CharacterBody2D
 		discShooter.connect("discShooterUpgrade",towerUpgrade)

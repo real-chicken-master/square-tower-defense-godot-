@@ -204,6 +204,17 @@ func _on_quit_button_button_down():
 func _on_menu_button_button_down():
 	TransitionLayer.changeScene("res://UI/title_screen.tscn")
 
+func disable_buttons():
+	for children in $"sidebar (towers)".get_children():
+		for button in children.get_children():
+			if(button.is_in_group("button")):
+				button.set_disabled(true)
+
+func enable_buttons():
+	for children in $"sidebar (towers)".get_children():
+		for button in children.get_children():
+			if(button.is_in_group("button")):
+				button.set_disabled(false)
 
 func _on_speed_button_button_down():
 	if(Globals.Tutorial):
