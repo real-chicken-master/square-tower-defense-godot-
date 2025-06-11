@@ -37,6 +37,7 @@ var squaresLeftInWave = 0:
 			waveInProgress = true
 
 func reset():
+	Tutorial = false
 	health = 100
 	money = 100
 	wave = 0
