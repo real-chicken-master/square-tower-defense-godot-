@@ -17,6 +17,7 @@ var sprayer_scene = preload("res://towers/towers/sprayer.tscn")
 
 var waveinfiniteMultiplyer = 1
 
+@onready var ui = $UI/UI
 
 func _ready():
 	Globals.reset()
@@ -25,11 +26,11 @@ func _ready():
 func connectSignals():
 	for Squares in get_tree().get_nodes_in_group("squares"):
 		Squares.connect("createSquare",createSquare)
-	$UI/UI.connect("towerplace",towerPlace)
-	$UI/UI.connect("startNextWave" ,startNextWave)
+	ui.connect("towerplace",towerPlace)
+	ui.connect("startNextWave" ,startNextWave)
 
 func towerPlace(towerType):
-	$UI/UI.disable_buttons()
+	ui.disable_buttons()
 	if(towerType == "disc Shooter"):
 		var DiscShooterPlace = discShooterPlace_scene.instantiate() as Sprite2D
 		DiscShooterPlace.connect("placeTower",placeTower)
@@ -44,10 +45,10 @@ func towerPlace(towerType):
 		$towers/towerPlaceIcons.add_child(sprayerPlace)
 
 func upgradeStop():
-	$UI/UI.upgradeStop()
+	ui.upgradeStop()
 
 func placeTower(towerType,pos):
-	$UI/UI.enable_buttons()
+	ui.enable_buttons()
 	if(towerType == "discShooter"):
 		var discShooter = discShooter_scene.instantiate() as CharacterBody2D
 		discShooter.connect("discShooterUpgrade",towerUpgrade)
@@ -257,7 +258,7 @@ func startNextWave(waveNumber):
 	
 
 func towerUpgrade(upgradeBranch1,upgradeBranch2,upgradeBranch3,tower,towerNode):
-	$UI/UI.towerUpgrade(upgradeBranch1,upgradeBranch2,upgradeBranch3,tower,towerNode)
+	ui.towerUpgrade(upgradeBranch1,upgradeBranch2,upgradeBranch3,tower,towerNode)
 
 
 func _on_character_body_2d_shoot_disc(pos, direction, damage,target):
