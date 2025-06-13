@@ -4,6 +4,7 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$"ColorRect/wavesSurvivedText".text = "you survived " + str(Globals.wave) + " waves"
+	Globals.reset()
 
 
 func _on_quit_button_button_down():

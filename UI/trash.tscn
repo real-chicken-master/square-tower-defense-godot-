@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=3 uid="uid://o860jg1qdf77"]
+
+[ext_resource type="Texture2D" uid="uid://bdwx0q41c68l7" path="res://images/trashBin.png" id="1_rxtyf"]
+[ext_resource type="Script" path="res://UI/trash.gd" id="1_w52rp"]
+[ext_resource type="Texture2D" uid="uid://bkn1yrb6myku0" path="res://images/trashLid.png" id="2_8nsn5"]
+
+[sub_resource type="Animation" id="Animation_xyyus"]
+resource_name = "lid_off"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TrashLid:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0472]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TrashLid:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.00138778, 0.344249, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-8.849, -37.12), Vector2(48.741, -38.12), Vector2(48.7407, 34.0993)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hhs22"]
+_data = {
+"lid_off": SubResource("Animation_xyyus")
+}
+
+[node name="trash" type="Area2D" groups=["bin"]]
+scale = Vector2(1, 0.9)
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("1_w52rp")
+
+[node name="TrashBin" type="Sprite2D" parent="."]
+texture = ExtResource("1_rxtyf")
+
+[node name="TrashLid" type="Sprite2D" parent="."]
+position = Vector2(48.7407, 34.0993)
+rotation = 1.0472
+scale = Vector2(0.775, 0.6)
+texture = ExtResource("2_8nsn5")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(-43, -25, -43, 75, -40.0838, 77.9091, -37.6756, 79.6492, -29.6125, 82.2767, -22.9247, 83.7334, -14.7139, 85.0578, -5.84085, 85.124, 7.53487, 85.0578, 15.216, 83.601, 25.943, 81.5483, 31.3728, 78.9659, 36, 75, 36, -25)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hhs22")
+}
+speed_scale = 1.7
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

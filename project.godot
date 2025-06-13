@@ -24,6 +24,7 @@ TransitionLayer="*res://UI/transitionLayer.tscn"
 window/size/viewport_width=1728
 window/size/viewport_height=972
 window/stretch/mode="canvas_items"
+window/stretch/aspect="ignore"
 
 [input]
 
@@ -39,5 +40,6 @@ window/stretch/mode="canvas_items"
 2d_physics/layer_2="towers"
 2d_physics/layer_3="projectiles"
 2d_physics/layer_4="squarecantPlace"
+2d_physics/layer_5="towerplace"
 2d_physics/size/viewport_height=648
 2d_physics/size/viewport_width=1152

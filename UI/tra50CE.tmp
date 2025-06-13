@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://o860jg1qdf77"]
+
+[ext_resource type="Texture2D" uid="uid://bdwx0q41c68l7" path="res://images/trashBin.png" id="1_rxtyf"]
+[ext_resource type="Script" path="res://UI/trash.gd" id="1_w52rp"]
+[ext_resource type="Texture2D" uid="uid://bkn1yrb6myku0" path="res://images/trashLid.png" id="2_8nsn5"]
+
+[node name="trash" type="Area2D"]
+scale = Vector2(1, 0.9)
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("1_w52rp")
+
+[node name="TrashBin" type="Sprite2D" parent="."]
+texture = ExtResource("1_rxtyf")
+
+[node name="TrashLid" type="Sprite2D" parent="."]
+position = Vector2(-9, -33)
+scale = Vector2(0.775, 0.6)
+texture = ExtResource("2_8nsn5")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(-43, -25, -43, 75, -40.0838, 77.9091, -37.6756, 79.6492, -29.6125, 82.2767, -22.9247, 83.7334, -14.7139, 85.0578, -5.84085, 85.124, 7.53487, 85.0578, 15.216, 83.601, 25.943, 81.5483, 31.3728, 78.9659, 36, 75, 36, -25)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

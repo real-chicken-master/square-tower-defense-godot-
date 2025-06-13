@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bnwvefyvc5koy"]
+[gd_scene load_steps=10 format=3 uid="uid://bnwvefyvc5koy"]
 
 [ext_resource type="Script" path="res://UI/ui.gd" id="1_palqw"]
 [ext_resource type="Texture2D" uid="uid://dvxdyo2rrwf4m" path="res://images/DiscShooter.png" id="2_hmbaw"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://q06m8hn7fdjh" path="res://images/heart.png" id="4_ghevu"]
 [ext_resource type="Texture2D" uid="uid://cq6dsv85bfgwb" path="res://images/$sign.png" id="5_2k8rc"]
 [ext_resource type="LabelSettings" uid="uid://douq65vob2cd7" path="res://misc settings/DefaultLabel.tres" id="7_3k4ka"]
+[ext_resource type="PackedScene" uid="uid://o860jg1qdf77" path="res://UI/trash.tscn" id="8_dloc1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_cy8kh"]
 font_size = 30
@@ -26,30 +27,35 @@ script = ExtResource("1_palqw")
 [node name="sidebar (towers)" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = -1
+anchor_top = 0.092
 anchor_right = 0.18
 anchor_bottom = 1.0
+offset_top = -0.424011
+offset_right = -0.0400085
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.639216, 0.478431, 0.203922, 1)
 
 [node name="VBoxContainer(buttons)" type="VBoxContainer" parent="sidebar (towers)"]
-visible = false
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.1
-anchor_top = 0.1
-anchor_right = 0.9
-anchor_bottom = 0.9
-offset_top = -0.200005
-offset_right = -0.0400085
+anchor_top = 0.024
+anchor_right = 0.677
+anchor_bottom = 0.885
+offset_top = -3.192
+offset_right = 23.453
+offset_bottom = 84.545
+grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.9, 0.9)
 
 [node name="discShooter" type="Button" parent="sidebar (towers)/VBoxContainer(buttons)" groups=["button"]]
 modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
-text = "$50"
+text = "discshooter
+$50"
 icon = ExtResource("2_hmbaw")
 icon_alignment = 1
 vertical_icon_alignment = 0
@@ -59,7 +65,8 @@ modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
-text = "$100"
+text = "sniper
+$100"
 icon = ExtResource("3_q8l72")
 icon_alignment = 1
 vertical_icon_alignment = 0
@@ -69,21 +76,30 @@ modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
-size_flags_stretch_ratio = 20.0
-text = "$100"
+text = "sprayer
+$100"
 icon = ExtResource("4_ds61g")
+clip_text = true
 icon_alignment = 1
 vertical_icon_alignment = 0
 
+[node name="trash" parent="sidebar (towers)/VBoxContainer(buttons)" instance=ExtResource("8_dloc1")]
+z_index = 1
+position = Vector2(288.889, 754.444)
+scale = Vector2(1.11111, 1)
+
 [node name="VBoxContainer(upgrades)" type="VBoxContainer" parent="sidebar (towers)"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.1
-anchor_top = 0.1
+anchor_top = 0.019
 anchor_right = 0.9
 anchor_bottom = 0.9
-offset_top = -0.200005
-offset_right = -0.0400085
+offset_left = -0.1
+offset_top = 0.223
+offset_right = 0.0999756
+offset_bottom = 0.300049
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="sidebar (towers)/VBoxContainer(upgrades)"]
@@ -296,6 +312,7 @@ text = "no
 "
 
 [node name="tutorialTextBox" type="ColorRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.18

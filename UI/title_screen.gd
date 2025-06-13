@@ -9,6 +9,7 @@ func _on_start_button_button_down():
 	showMaps()
 
 func _on_exit_button_button_down():
+	
 	get_tree().quit()
 
 func _process(_delta):

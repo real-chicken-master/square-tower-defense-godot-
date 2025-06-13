@@ -45,3 +45,8 @@ func _on_area_2d_body_exited(body):
 	blockingObjects.erase(body)
 	if(blockingObjects.size() == 0):
 		canPlaceCollision = false
+
+
+func sell():
+	Globals.money += Globals.discShooterPrice
+	queue_free()

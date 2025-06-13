@@ -22,7 +22,7 @@ var upgradeBranch3 = 1
 
 @export var baseAttackDelay = 0.3
 
-var price = 50
+var price = Globals.discShooterPrice
 
 var attackSpeed = 1:
 	set(attackspeed):

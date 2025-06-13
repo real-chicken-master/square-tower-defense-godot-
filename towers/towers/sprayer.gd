@@ -10,7 +10,7 @@ var upgradeBranch2 = 1
 
 var upgradeBranch3 = 1
 
-var price = 100 
+var price = Globals.sprayerPrice 
 
 @export var baseAttackDelay = 0.7
 

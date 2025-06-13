@@ -48,3 +48,7 @@ func reset():
 	Engine.time_scale = 1.0
 
 var Tutorial = false
+
+var discShooterPrice = 50
+var sniperPrice = 75
+var sprayerPrice = 100

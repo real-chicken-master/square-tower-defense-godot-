@@ -20,7 +20,10 @@ var upgradeBranch3 = 1
 
 @export var baseAttackDelay = 1.0
 
-var price = 75
+var price = Globals.sniperPrice
+
+func _ready():
+	global_position.y += 11
 
 var attackSpeed = 1:
 	set(attackspeed):

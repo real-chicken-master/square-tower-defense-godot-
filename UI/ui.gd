@@ -52,9 +52,12 @@ var upgradecanclose = true
 
 func _ready():
 	$"sidebar (towers)/HBoxContainer/speedButton".text = "x" + str(round(Engine.time_scale))
-	$"sidebar (towers)/VBoxContainer(buttons)/discShooter".text = "$"+str(discShooterPrice)
-	$"sidebar (towers)/VBoxContainer(buttons)/sniper".text = "$"+str(sniperPrice)
-	$"sidebar (towers)/VBoxContainer(buttons)/sprayer".text = "$"+str(sprayerPrice)
+	$"sidebar (towers)/VBoxContainer(buttons)/discShooter".text = "discshooter
+	$"+str(discShooterPrice)
+	$"sidebar (towers)/VBoxContainer(buttons)/sniper".text = "sniper
+	$"+str(sniperPrice)
+	$"sidebar (towers)/VBoxContainer(buttons)/sprayer".text = "sprayer
+	$"+str(sprayerPrice)
 	$"sidebar (towers)/VBoxContainer(buttons)".visible = true
 	$"sidebar (towers)/VBoxContainer(upgrades)".visible = false
 	$tutorialTextBox.visible = false
@@ -158,7 +161,7 @@ func updateUpgradeButtons():
 		$"sidebar (towers)/VBoxContainer(upgrades)/upgradeBranch2".text = "increase damage by 50%
 		from " + str(snapped(upgradeTowerNode.Damage , 0.01)) + "
 		$" + str(upgradeBranch2Price)
-		sellPrice = floor((upgradeTowerNode.price + (10*upgradeBranch1PriceMultiplyer) + (12*upgradeBranch2PriceMultiplyer) + (10*upgradeBranch3PriceMultiplyer))/1.8)
+		sellPrice = floor((upgradeTowerNode.price + (11*upgradeBranch1PriceMultiplyer) + (12*upgradeBranch2PriceMultiplyer) + (11*upgradeBranch3PriceMultiplyer)-34))
 		$"sidebar (towers)/VBoxContainer(upgrades)/sell".text = "sell for $" + str(sellPrice)
 
 func _on_upgrade_branch_1_button_down():
@@ -168,7 +171,7 @@ func _on_upgrade_branch_1_button_down():
 		upgradeTowerNode.attackSpeed *= 1.1
 		upgradeTowerNode.upgradeBranch1 += 1
 		Globals.money -= upgradeBranch1Price
-	updateUpgradeButtons()
+		updateUpgradeButtons()
 
 
 func _on_upgrade_branch_2_button_down():
@@ -198,7 +201,9 @@ func anyButtonPressed():
 	return anybuttonpressed
 
 func _on_quit_button_button_down():
-	get_tree().quit()
+	var comformation = await areYouSure()
+	if comformation:
+		get_tree().quit()
 
 
 func _on_menu_button_button_down():
@@ -377,6 +382,7 @@ func areYouSure():
 			return false
 		if(is_instance_valid(get_tree())):
 			await get_tree().create_timer(0.0000001,true,false,true).timeout
+	$areYouSure.visible = false
 
 
 
@@ -386,3 +392,10 @@ func _on_next_line_button_down():
 func  nextline():
 	nextLine.emit()
 
+func towerPlace():
+	disable_buttons()
+	$"sidebar (towers)/VBoxContainer(buttons)/trash".enabled = true
+
+func stopTowerPlace():
+	enable_buttons()
+	$"sidebar (towers)/VBoxContainer(buttons)/trash".enabled = false
