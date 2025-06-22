@@ -12,7 +12,7 @@ var enabled = false:
 			monitoring = false
 		enabled = boolean
 
-func _process(delta):
+func _process(_delta):
 	if(node != null):
 		if (Input.is_action_just_pressed("left click")):
 			if(is_instance_valid(node)):
@@ -23,5 +23,5 @@ func _on_area_entered(area):
 	node = area.get_parent()
 
 
-func _on_area_exited(area):
+func _on_area_exited(_area):
 	node = null
