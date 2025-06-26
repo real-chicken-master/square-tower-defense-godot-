@@ -46,8 +46,7 @@ script = ExtResource("1_w52rp")
 texture = ExtResource("1_rxtyf")
 
 [node name="TrashLid" type="Sprite2D" parent="."]
-position = Vector2(48.7407, 34.0993)
-rotation = 1.0472
+position = Vector2(-8.849, -37.12)
 scale = Vector2(0.775, 0.6)
 texture = ExtResource("2_8nsn5")
 

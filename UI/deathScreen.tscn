@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bvdh8ft3hwsn1"]
 
 [ext_resource type="Script" path="res://UI/deathScreen.gd" id="1_sdieg"]
-[ext_resource type="LabelSettings" uid="uid://douq65vob2cd7" path="res://misc settings/DefaultLabel.tres" id="2_ayygj"]
+[ext_resource type="LabelSettings" uid="uid://douq65vob2cd7" path="res://label settings/DefaultLabel.tres" id="2_ayygj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bw36v"]
 font_size = 150

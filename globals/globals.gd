@@ -52,3 +52,24 @@ var Tutorial = false
 var discShooterPrice = 50
 var sniperPrice = 75
 var sprayerPrice = 100
+
+var creditWord = [KEY_A,KEY_R,KEY_L,KEY_O]
+var currentInput = 0
+var nextInput = creditWord[currentInput]
+
+func _input(event):
+	if event is InputEventKey:
+		if(event.pressed):
+			if event.keycode == nextInput:
+				currentInput += 1
+				if currentInput == creditWord.size():
+					Credits.active = true
+					currentInput = 0
+					nextInput = creditWord[currentInput]
+				else:
+					nextInput = creditWord[currentInput]
+			else :
+				currentInput = 0
+				nextInput = creditWord[currentInput]
+	
+

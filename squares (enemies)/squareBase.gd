@@ -6,7 +6,7 @@ var speed = 0
 
 var type
 
-@export var health = 2
+var health = 2
 
 var currentHealth
 
@@ -23,6 +23,7 @@ func _process(delta):
 	progress += speed*delta
 
 func hit(damage):
+	$CharacterBody2D/GPUParticles2D.emitting = true
 	if(type == "black"):
 		if((damage/2) >= health):
 			Globals.money += health

@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ba68w61iocl47" path="res://images/sprayer.png" id="4_ds61g"]
 [ext_resource type="Texture2D" uid="uid://q06m8hn7fdjh" path="res://images/heart.png" id="4_ghevu"]
 [ext_resource type="Texture2D" uid="uid://cq6dsv85bfgwb" path="res://images/$sign.png" id="5_2k8rc"]
-[ext_resource type="LabelSettings" uid="uid://douq65vob2cd7" path="res://misc settings/DefaultLabel.tres" id="7_3k4ka"]
+[ext_resource type="LabelSettings" uid="uid://douq65vob2cd7" path="res://label settings/DefaultLabel.tres" id="7_3k4ka"]
 [ext_resource type="PackedScene" uid="uid://o860jg1qdf77" path="res://UI/trash.tscn" id="8_dloc1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_cy8kh"]

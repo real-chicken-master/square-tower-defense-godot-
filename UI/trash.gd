@@ -12,6 +12,8 @@ var enabled = false:
 			monitoring = false
 		enabled = boolean
 
+
+
 func _process(_delta):
 	if(node != null):
 		if (Input.is_action_just_pressed("left click")):
